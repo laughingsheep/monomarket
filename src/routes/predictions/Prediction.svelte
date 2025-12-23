@@ -2,7 +2,7 @@
   let { stock } = $props();
 
   import { colorForValue, formatCoins, removeAllStock, user } from "$lib/index.svelte.js";
-  const longDate = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  const longDate = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: '2-digit' });
   let yesPrice = $state();
   let noPrice = $state();
   let chanceColor = $state();
@@ -26,13 +26,14 @@
     localStorage.setItem("balance", user.balance);
   }
 </script>
+
 {#await market}
 
 {:then market}
   <main>
     <div id="top" onclick={location.href = '/event/' + market.slug}>
       <div style="display: flex; flex-direction:column;">
-        <img src={market["icon"]} alt="Market icon" />
+        <img src={market["icon"]  || "/noImage.png" } alt="Market icon" />
       </div>
       <h1>
         {#if market.closed}
@@ -62,11 +63,17 @@
           <h5>Shares</h5>
         </div>
         <div class="stat">
-          <h4>{stock.amount * currentPrice} 🪙</h4>
+          <h4>{stock.amount * currentPrice} <span>🪙</span></h4>
           <h5>Value</h5>
         </div>
         <div class="stat">
-          <h4>{stock.amount * (currentPrice - stock.sharePrice)} 🪙</h4>
+          {#if stock.amount * currentPrice - stock.totalCost > 0}
+            <h4 style="color: #30A159;">{stock.amount * currentPrice - stock.totalCost} <span>🪙</span></h4>
+          {:else if stock.amount * currentPrice - stock.totalCost < 0}
+            <h4 style="color: #E23A39;">{stock.amount * currentPrice - stock.totalCost} <span>🪙</span></h4>
+          {:else}
+            <h4>{stock.amount * currentPrice - stock.totalCost} <span>🪙</span></h4>
+          {/if}
           <h5>Profit</h5>
         </div>
         <div class="stat">
@@ -76,7 +83,7 @@
       </div>
     {:else}
       {#if hasWon}
-        <button onclick={()=>{claimWinnings();removeAllStock(stock.slug)}}>Claim {formatCoins(stock.amount * currentPrice)} (+{formatCoins(stock.amount * (currentPrice - stock.sharePrice))})</button>
+        <button onclick={()=>{claimWinnings();removeAllStock(stock.slug)}}>Claim {formatCoins(stock.amount * currentPrice)} (+{formatCoins(stock.amount * currentPrice - stock.totalCost)})</button>
       {:else}
         <button id="hide" onclick={()=>{removeAllStock(stock.slug)}}>Hide</button>
       {/if}
@@ -141,6 +148,9 @@
         flex-direction: column;
         align-items: center;
     }
+    span{
+        font-size: 14px;
+    }
     h1{
         font-size: 16px;
         font-weight: 600;
@@ -166,7 +176,10 @@
     }
     h4{
         font-size: 20px;
-
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
     }
     h5{
         font-size: 14px;

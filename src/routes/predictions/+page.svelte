@@ -9,7 +9,9 @@ onMount(()=>{
 });
 </script>
 <Nav/>
-
+<svelte:head>
+  <title>Your Predictions | Monomarket</title>
+</svelte:head>
 <main>
   <section>
     <h1>My Predictions</h1>

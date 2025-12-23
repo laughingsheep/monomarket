@@ -2,6 +2,9 @@
   import Nav from "../../Nav.svelte";
   import TransactionWidget from "./TransactionWidget.svelte";
   import PriceHistory from "./PriceHistory.svelte";
+
+
+
   let { data } = $props();
   let market = data.market
   const longDate = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -21,16 +24,23 @@
 
 </script>
 <Nav/>
+<svelte:head>
+  <title>{market["question"]} | Monomarket</title>
+</svelte:head>
 <main>
   <section>
     <div class="split">
       <div>
         <div id="info">
-          <img src={market["icon"]} alt="Market icon" />
+          <img src={market["icon"]  || "/noImage.png" } alt="Market icon" />
           <h1>{market["question"]}</h1>
         </div>
         <p id="small">{formatCoinUSD(market.volume * 100)} Vol. · Ends {longDate.format(new Date(market.endDate))} at latest</p>
         <PriceHistory {yesPrice} priceHistory={data.priceHistory}/>
+        <div style="margin-top: 16px;">
+          <h1>Rules</h1>
+          <pre>{market.description}</pre>
+        </div>
       </div>
       <div>
         <TransactionWidget {market} {yesPrice} {noPrice}/>
@@ -41,6 +51,10 @@
 </main>
 
 <style>
+    pre{
+        max-width: 1000px;
+        text-wrap: auto;
+    }
     .split{
         justify-content: space-between;
         display: flex;

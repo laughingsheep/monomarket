@@ -4,7 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca018920-cb8c-4c9b-9b6e-547d617d3822" name="Changes" comment="" />
+    <list default="true" id="ca018920-cb8c-4c9b-9b6e-547d617d3822" name="Changes" comment="V1">
+      <change afterPath="$PROJECT_DIR$/src/routes/api/search/[term]/[page]/+server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/search/[term]/+page.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/favicon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/logo_old.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/noImage.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/index.svelte.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/index.svelte.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/MarketOverview.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/MarketOverview.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Nav.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Nav.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/PriceHistory.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/PriceHistory.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/TransactionWidget.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/TransactionWidget.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/explore/+server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/explore/[page]/+server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/predictions/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/predictions/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/predictions/Prediction.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/predictions/Prediction.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,15 +44,16 @@
         <option value="PriceHistory" />
         <option value="+page.svelte" />
         <option value="JavaScript File" />
+        <option value="+page.svelt" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="37ACAwqovaCpfsFRNVkjgCICuy8" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
@@ -47,14 +71,16 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "main",
+    "javascript.preferred.runtime.type.id": "bun",
     "last_opened_file_path": "/Users/jostbohmann/Documents/monomarket/src/routes/predictions",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.svelteservice",
+    "settings.editor.selected.configurable": "editor.preferences.tabs",
     "ts.external.directory.path": "/Users/jostbohmann/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
@@ -64,15 +90,17 @@
       <recent name="$PROJECT_DIR$/src/routes/predictions" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/routes/api/eventData/[slug]" />
       <recent name="$PROJECT_DIR$/static" />
-      <recent name="$PROJECT_DIR$/src/lib/assets" />
+      <recent name="$PROJECT_DIR$/src/routes/search/[term]" />
+      <recent name="$PROJECT_DIR$/src/lib" />
+      <recent name="$PROJECT_DIR$/src/routes/explore/[page]" />
+      <recent name="$PROJECT_DIR$/src/routes/explore" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-WS-252.26830.93" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.29346.143" />
       </set>
     </attachedChunks>
   </component>
@@ -87,10 +115,49 @@
       <option name="presentableId" value="Default" />
       <updated>1766336348183</updated>
       <workItem from="1766336349219" duration="42577000" />
+      <workItem from="1766428217692" duration="1659000" />
+      <workItem from="1766429885176" duration="9000" />
+      <workItem from="1766429917587" duration="125000" />
+      <workItem from="1766430124062" duration="885000" />
+      <workItem from="1766431022936" duration="944000" />
+      <workItem from="1766450249885" duration="49000" />
+      <workItem from="1766497900905" duration="8890000" />
     </task>
+    <task id="LOCAL-00001" summary="V1">
+      <option name="closed" value="true" />
+      <created>1766428252370</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1766428252370</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="V1" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
   </component>
 </project>

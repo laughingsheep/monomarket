@@ -1,5 +1,6 @@
 <script>
   let { market } = $props();
+  console.log(market);
   let prices = JSON.parse(market["outcomePrices"]).map(Number);
   let yesPrice = Math.round(prices[0] * 100);
   let noPrice = Math.round(prices[1] * 100);
@@ -9,7 +10,7 @@
 
 <main onclick={location.href = '/event/' + market.slug}>
   <div id="top">
-    <img src={market["icon"]} alt="Market icon" />
+    <img src={market["icon"] || "/noImage.png"} alt="Market icon" />
     <h1>{market["question"]}</h1>
     <div style="--color: {chanceColor}">
       <h2>{yesPrice}%</h2>

@@ -7,6 +7,22 @@ export function getStocks(){
 export function setStocks(stocks){
   localStorage.setItem('stocks', JSON.stringify(stocks));
 }
+export function getStockAmount(slug, yesNo){
+  let stocks = getStocks();
+  const stock = stocks.find(s => s.slug === slug && s.yesNo === yesNo);
+  return stock ? stock.amount : 0;
+}
+export function removeStock(slug, yesNo, amount){
+  let stocks = getStocks();
+  const idx = stocks.findIndex(s => s.slug === slug && s.yesNo === yesNo);
+  if (idx !== -1) {
+    stocks[idx].amount -= amount;
+    if (stocks[idx].amount <= 0) {
+      stocks.splice(idx, 1);
+    }
+    setStocks(stocks);
+  }
+}
 export function removeAllStock(slug){
   let stocks = getStocks();
   stocks = stocks.filter(s => s.slug !== slug);
@@ -33,17 +49,25 @@ export function colorForValue(v){
   const s=n=>n.toString(16).padStart(2,"0");
   return "#"+s(r)+s(g)+s(b);
 }
-export function addStock(slug, yesNo, amount, sharePrice) {
+export function addStock(slug, yesNo, amount, totalCost) {
   let stocks = getStocks();
-  stocks.push({
-    slug,
-    yesNo,
-    amount,
-    sharePrice,
-    date: new Date().toISOString()
-  });
+
+  const idx = stocks.findIndex(s => s.slug === slug && s.yesNo === yesNo);
+  if (idx !== -1) {
+    stocks[idx].amount += amount;
+    stocks[idx].totalCost += totalCost;
+  } else {
+    stocks.push({
+      slug,
+      yesNo,
+      amount: amount,
+      totalCost: totalCost,
+      date: new Date().toISOString()
+    });
+  }
+
   setStocks(stocks);
 }
 export const user = $state({
-  balance: 0
+  balance: null
 });

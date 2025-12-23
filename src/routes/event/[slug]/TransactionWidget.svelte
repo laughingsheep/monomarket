@@ -1,11 +1,11 @@
 <script>
   import {onMount} from "svelte";
-  import { addStock, user, getStocks } from '$lib/index.svelte.js';
+  import {removeStock, getStockAmount, addStock, user, getStocks} from '$lib/index.svelte.js';
   let mode = $state("BUY");
   let yesNo = $state("YES");
   let {market, yesPrice, noPrice} = $props();
   let amount = $state(1);
-
+  import toast, { Toaster } from 'svelte-french-toast';
   function formatCoinUSD(amount) {
     const usd = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -24,8 +24,33 @@
   function buy(){
     user.balance -= (yesNo === "YES" ? yesPrice * amount : noPrice * amount);
     localStorage.setItem("balance", user.balance);
-    addStock(market.slug, yesNo, amount, yesNo === "YES" ? yesPrice : noPrice);
+    addStock(market.slug, yesNo, amount, (yesNo === "YES" ? yesPrice * amount : noPrice * amount));
+    toast.success(`Bought ${amount} ${yesNo.toLowerCase()} share(s) for ${formatCoinUSD(yesNo === "YES" ? yesPrice * amount : noPrice * amount)}`,{
+      position: "bottom-right"
+    } );
   }
+  function sell(){
+    user.balance += (yesNo === "YES" ? yesPrice * amount : noPrice * amount);
+    localStorage.setItem("balance", user.balance);
+    removeStock(market.slug, yesNo, amount);
+    toast.success(`Sold ${amount} ${lowercaseAllExceptFirst(yesNo)} share(s) for ${formatCoinUSD(yesNo === "YES" ? yesPrice * amount : noPrice * amount)}`,{
+      position: "bottom-right"
+    } );
+  }
+  function lowercaseAllExceptFirst(str) {
+    if (typeof str !== 'string') return '';
+    if (str.length === 0) return '';
+    if (str.length === 1) return str;
+    return str[0] + str.slice(1).toLowerCase();
+  }
+  let stockOwnedYes = $state(0);
+  let stockOwnedNo = $state(0);
+  let stockOwned = $derived(yesNo === "YES" ? stockOwnedYes : stockOwnedNo);
+  onMount(()=>{
+    const stocks = getStocks();
+    stockOwnedYes = getStockAmount(market.slug, "YES", stocks);
+    stockOwnedNo = getStockAmount(market.slug, "NO", stocks);
+  })
 </script>
 
 <style>
@@ -104,7 +129,7 @@
       justify-content: center;
       gap: 10px;
   }
-  #explaination{
+  #explanation{
       font-size: 13px;
       color: gray;
       margin-top: 10px;
@@ -135,7 +160,7 @@
   }
   .number{
       font-weight: bold;
-      font-size: 20px;
+      font-size: 16px;
   }
   button{
       margin-top: 16px;
@@ -157,6 +182,9 @@
   input[type=number] {
       -moz-appearance:textfield;
   }
+  span{
+      font-weight: normal;
+  }
 </style>
 <main>
   <div id="modeSelector">
@@ -175,33 +203,77 @@
         <p class="price">{noPrice} 🪙</p>
       </div>
     </div>
-    <p id="explaination">ℹ You will receive 100 🪙 for each share if you predict correctly. You can sell your shares at anytime at current market price.</p>
+    {#if mode === "BUY"}
+      <p id="explanation">ℹ You will receive 100 🪙 for each share if you predict correctly. You can sell your shares at anytime at current market price.</p>
+    {/if}
 
     <div id="shareInput">
       <h2>Shares</h2>
       <input inputmode="numeric" pattern="[0-9]*" step="1" autofocus type="number" min="1" bind:value={amount} />
     </div>
     <hr style="margin-top: 15px; margin-bottom: 15px;" />
-    <div class="stat">
-      <p><b>Cost:</b> <b>{amount}</b> Share(s) * {yesNo === "YES" ? yesPrice : noPrice} 🪙</p>
-      {#if yesNo === "YES"}
-          <p  class="number" style="color: #e23a39">-{formatCoinUSD(yesPrice * amount)}</p>
+    {#if mode === "BUY"}
+      <div class="stat">
+        <p><b>You currently own:</b></p>
+        <p  class="number" style="color: black">{stockOwned} <span>Share(s)</span></p>
+      </div>
+
+      <div class="stat">
+        <p><b>Cost:</b> <b>{amount}</b> Share(s) * {yesNo === "YES" ? yesPrice : noPrice} 🪙</p>
+        {#if yesNo === "YES"}
+            <p  class="number" style="color: #e23a39">-{formatCoinUSD(yesPrice * amount)}</p>
+        {:else}
+            <p  class="number" style="color: #e23a39">-{formatCoinUSD(noPrice * amount)}</p>
+        {/if}
+      </div>
+      <div class="stat">
+        <p><b>Potential win:</b></p>
+        <p class="number" style="color:#30a159">+{formatCoinUSD(amount * 100)}</p>
+      </div>
+      {#if user.balance >= (yesNo === "YES" ? yesPrice * amount : noPrice * amount) }
+        <button onclick={buy}>
+          Buy {amount} for {yesNo === "YES" ? formatCoinUSD(yesPrice * amount) : formatCoinUSD(noPrice * amount)}
+        </button>
       {:else}
-          <p  class="number" style="color: #e23a39">-{formatCoinUSD(noPrice * amount)}</p>
+        <button style="background: gray; cursor: not-allowed;">
+          You need {formatCoinUSD((yesNo === "YES" ? yesPrice * amount : noPrice * amount) - user.balance)} more
+        </button>
       {/if}
-    </div>
-    <div class="stat">
-      <p><b>Potential win:</b></p>
-      <p class="number" style="color:#30a159">+{formatCoinUSD(amount * 100)}</p>
-    </div>
-    {#if user.balance >= (yesNo === "YES" ? yesPrice * amount : noPrice * amount) }
-      <button onclick={buy}>
-        Buy {amount} for {yesNo === "YES" ? formatCoinUSD(yesPrice * amount) : formatCoinUSD(noPrice * amount)}
-      </button>
     {:else}
-      <button style="background: gray; cursor: not-allowed;">
-        You need {formatCoinUSD((yesNo === "YES" ? yesPrice * amount : noPrice * amount) - user.balance)} more
-      </button>
+      <div class="stat">
+        <p><b>You currently own:</b></p>
+        <p  class="number" style="color: black">{stockOwned} <span>Share(s)</span></p>
+      </div>
+      <div class="stat">
+        <p><b>You'll sell:</b></p>
+        <p  class="number" style="color: #e23a39">-{amount} Shares</p>
+      </div>
+      <div class="stat">
+        <p><b>Shares remaining:</b></p>
+        <p  class="number" style="color: black">{stockOwned - amount} Shares</p>
+      </div>
+      <div class="stat">
+        <p><b>Payout:</b> <b>{amount}</b> Share(s) * {yesNo === "YES" ? yesPrice : noPrice} 🪙</p>
+        {#if yesNo === "YES"}
+          <p  class="number" style="color: #30a159">+{formatCoinUSD(yesPrice * amount)}</p>
+        {:else}
+          <p  class="number" style="color: #30a159">+{formatCoinUSD(noPrice * amount)}</p>
+        {/if}
+      </div>
+
+      {#if stockOwned >= amount }
+        <button onclick={sell}>
+          Sell {amount} {lowercaseAllExceptFirst(yesNo)} share(s) for {yesNo === "YES" ? formatCoinUSD(yesPrice * amount) : formatCoinUSD(noPrice * amount)}
+        </button>
+      {:else if stockOwned > 0}
+        <button style="background: gray; cursor: not-allowed;">
+          You only have {stockOwned} {lowercaseAllExceptFirst(yesNo)} share(s)
+        </button>
+      {:else}
+        <button style="background: gray; cursor: not-allowed;">
+          You own no {lowercaseAllExceptFirst(yesNo)} share(s)
+        </button>
+      {/if}
     {/if}
   </section>
 </main>

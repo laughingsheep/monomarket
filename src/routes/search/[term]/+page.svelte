@@ -1,17 +1,19 @@
 <script>
   import { onMount } from "svelte";
   import MarketOverview from "$lib/MarketOverview.svelte";
-  import Nav from "./Nav.svelte";
-
-  let markets = [];
+  import Nav from "../../Nav.svelte";
+  let { data } = $props();
+  let markets = $state([]);
   let page = 1;
   let loading = false;
-  let sentinel;
 
+  let sentinel;
+  let searchTerm = $state("");
   async function loadMarkets() {
     if (loading) return;
     loading = true;
-    const res = await fetch(`/explore/${page}`);
+    searchTerm = decodeURI(location.pathname.split("/").at(-1))
+    const res = await fetch(`/api/search/${searchTerm}/${page}`);
     if (!res.ok) {
       loading = false;
       return;
@@ -40,9 +42,12 @@
 
 <Nav />
 <svelte:head>
-  <title>Monomarket | Free Prediction Market</title>
+  <title>Search for {searchTerm} | Monomarket</title>
 </svelte:head>
 <main>
+  {#if markets.length === 0 && !loading}
+    <h2>No markets found for "{searchTerm}"</h2>
+  {/if}
   <section>
     {#each markets as market}
       <MarketOverview {market} />

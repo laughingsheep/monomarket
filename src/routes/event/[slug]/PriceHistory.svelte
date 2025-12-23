@@ -41,6 +41,7 @@
         ]
       },
       options: {
+        responsive: false,
         parsing: true,
         onHover: (event, activeElements, chart) => {
           const el = activeElements?.[0];
@@ -92,10 +93,14 @@
   })
 </script>
 <h2 style="--color: {colorForValue(displayPrice)}">{displayPrice}% chance</h2>
-<canvas width="900" height="300" bind:this={chartElement} onmouseout={displayPrice=yesPrice}>
+<canvas width="1000" height="300" bind:this={chartElement} onmouseout={()=>{displayPrice=yesPrice}}>
 
 </canvas>
 <style>
+    canvas{
+        width: 900px;
+        height: 300px;
+    }
     h2{
         margin: 20px 0;
         font-size: 30px;
