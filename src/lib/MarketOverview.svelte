@@ -1,15 +1,15 @@
 <script>
   let { market } = $props();
-  console.log(market);
+  import { calculateSharePrice } from '$lib/index.svelte.js';
   let prices = JSON.parse(market["outcomePrices"]).map(Number);
-  let yesPrice = Math.round(prices[0] * 100);
-  let noPrice = Math.round(prices[1] * 100);
+  let yesPrice = calculateSharePrice(prices[0]);
+  let noPrice = calculateSharePrice(prices[1]);
   import { colorForValue } from '$lib/index.svelte.js';
   let chanceColor = colorForValue(yesPrice);
 </script>
 
-<main onclick={location.href = '/event/' + market.slug}>
-  <div id="top">
+<main>
+  <div id="top" onclick={location.href = '/event/' + market.slug}>
     <img src={market["icon"] || "/noImage.png"} alt="Market icon" />
     <h1>{market["question"]}</h1>
     <div style="--color: {chanceColor}">
@@ -18,8 +18,8 @@
     </div>
   </div>
   <div id="bottom" style="--chance: {yesPrice}%">
-    <button id="yes">Yes - {yesPrice}%</button>
-    <button id="no">No - {noPrice}%</button>
+    <button id="yes" onclick={location.href = '/event/' + market.slug} >Yes - {yesPrice}%</button>
+    <button id="no" onclick={location.href = '/event/' + market.slug + "?yesNo=NO"}>No - {noPrice}%</button>
   </div>
 </main>
 
@@ -31,6 +31,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: flex-start;
     }
     #top h2{
         color: var(--color);
@@ -93,7 +94,6 @@
     }
     #top{
         display: flex;
-        align-items: center;
         gap: 16px;
     }
     img{

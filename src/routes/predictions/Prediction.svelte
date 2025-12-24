@@ -1,7 +1,7 @@
 <script>
   let { stock } = $props();
 
-  import { colorForValue, formatCoins, removeAllStock, user } from "$lib/index.svelte.js";
+  import {calculateSharePrice, colorForValue, formatCoins, removeAllStock, user} from "$lib/index.svelte.js";
   const longDate = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: '2-digit' });
   let yesPrice = $state();
   let noPrice = $state();
@@ -13,25 +13,30 @@
     if (!res.ok) throw new Error('Failed to load posts');
     let market2 = await res.json();
     let prices = JSON.parse(market2["outcomePrices"]).map(Number);
-    yesPrice = Math.round(prices[0] * 100);
-    noPrice = Math.round(prices[1] * 100);
+    yesPrice = calculateSharePrice(prices[0]);
+    noPrice = calculateSharePrice(prices[1]);
     currentPrice = stock.yesNo === "YES" ? yesPrice : noPrice;
     chanceColor = colorForValue(yesPrice);
-    hasWon = (stock.yesNo === "YES" && yesPrice === 100) || (stock.yesNo === "NO" && noPrice === 100)
+    hasWon = (stock.yesNo === "YES" && yesPrice === 99) || (stock.yesNo === "NO" && noPrice === 99)
     return market2
   }
   const market = loadMarket();
   function claimWinnings(){
-    user.balance += stock.amount * currentPrice;
+    user.balance += stock.amount * 100;
     localStorage.setItem("balance", user.balance);
+  }
+  function redirect(){
+    if(!market.closed){
+      location.href = '/event/' + stock.slug + "?mode=SELL&yesNo=" + stock.yesNo;
+    }
   }
 </script>
 
 {#await market}
 
 {:then market}
-  <main>
-    <div id="top" onclick={location.href = '/event/' + market.slug}>
+  <main onclick={redirect}>
+    <div id="top">
       <div style="display: flex; flex-direction:column;">
         <img src={market["icon"]  || "/noImage.png" } alt="Market icon" />
       </div>
@@ -51,10 +56,21 @@
         {/if}
         {market["question"]}
       </h1>
-      <div style="--color: {chanceColor}">
-        <h2>{yesPrice}%</h2>
-        <h3>chance</h3>
-      </div>
+      {#if market.closed}
+        <div style="--color: {chanceColor}">
+          {#if yesPrice === 99}
+            <h2>YES</h2>
+          {:else}
+            <h2>NO</h2>
+          {/if}
+          <h3>won</h3>
+        </div>
+      {:else}
+        <div style="--color: {chanceColor}">
+          <h2>{yesPrice}%</h2>
+          <h3>chance</h3>
+        </div>
+      {/if}
     </div>
     {#if !market.closed}
       <div id="bottom" style="--chance: {yesPrice}%">
@@ -76,10 +92,17 @@
           {/if}
           <h5>Profit</h5>
         </div>
-        <div class="stat">
-          <h4>{longDate.format(new Date(market.endDate))}</h4>
-          <h5>Ends at</h5>
-        </div>
+        {#if market.endDate}
+          <div class="stat">
+            <h4>{longDate.format(new Date(market.endDate))}</h4>
+            <h5>Ends at</h5>
+          </div>
+        {:else}
+          <div class="stat">
+            <h4>Overdue</h4>
+            <h5>on Judgment</h5>
+          </div>
+        {/if}
       </div>
     {:else}
       {#if hasWon}

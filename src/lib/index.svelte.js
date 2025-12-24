@@ -1,32 +1,37 @@
-export function getStocks(){
+/*export function getStocks(){
   if(!localStorage.getItem('stocks')){
     localStorage.setItem('stocks', JSON.stringify([]));
   }
   return JSON.parse(localStorage.getItem('stocks'));
+}*/
+export function saveStocks(){
+  localStorage.setItem('stocks', JSON.stringify(user.stocks));
 }
-export function setStocks(stocks){
-  localStorage.setItem('stocks', JSON.stringify(stocks));
+export function calculateSharePrice(usdPrice){
+  let coinPrice = Math.round(usdPrice * 100);
+  if(coinPrice === 100) coinPrice = 99;
+  if(coinPrice === 0) coinPrice = 1;
+  return coinPrice;
 }
 export function getStockAmount(slug, yesNo){
-  let stocks = getStocks();
-  const stock = stocks.find(s => s.slug === slug && s.yesNo === yesNo);
+  const stock = user.stocks.find(s => s.slug === slug && s.yesNo === yesNo);
   return stock ? stock.amount : 0;
 }
 export function removeStock(slug, yesNo, amount){
-  let stocks = getStocks();
+  let stocks = user.stocks;
   const idx = stocks.findIndex(s => s.slug === slug && s.yesNo === yesNo);
   if (idx !== -1) {
     stocks[idx].amount -= amount;
     if (stocks[idx].amount <= 0) {
       stocks.splice(idx, 1);
     }
-    setStocks(stocks);
+    user.stocks = stocks;
+    saveStocks();
   }
 }
 export function removeAllStock(slug){
-  let stocks = getStocks();
-  stocks = stocks.filter(s => s.slug !== slug);
-  setStocks(stocks);
+  user.stocks = user.stocks.filter(s => s.slug !== slug);
+  saveStocks();
 }
 export function formatCoins(amount) {
   const usd = new Intl.NumberFormat('en-US', {
@@ -50,14 +55,12 @@ export function colorForValue(v){
   return "#"+s(r)+s(g)+s(b);
 }
 export function addStock(slug, yesNo, amount, totalCost) {
-  let stocks = getStocks();
-
-  const idx = stocks.findIndex(s => s.slug === slug && s.yesNo === yesNo);
+  const idx = user.stocks.findIndex(s => s.slug === slug && s.yesNo === yesNo);
   if (idx !== -1) {
-    stocks[idx].amount += amount;
-    stocks[idx].totalCost += totalCost;
+    user.stocks[idx].amount += amount;
+    user.stocks[idx].totalCost += totalCost;
   } else {
-    stocks.push({
+    user.stocks.push({
       slug,
       yesNo,
       amount: amount,
@@ -65,9 +68,9 @@ export function addStock(slug, yesNo, amount, totalCost) {
       date: new Date().toISOString()
     });
   }
-
-  setStocks(stocks);
+  saveStocks();
 }
 export const user = $state({
-  balance: null
+  balance: null,
+  stocks: []
 });

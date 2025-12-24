@@ -1,6 +1,6 @@
 <script>
   import {onMount} from "svelte";
-  import {removeStock, getStockAmount, addStock, user, getStocks} from '$lib/index.svelte.js';
+  import {removeStock, getStockAmount, addStock, user} from '$lib/index.svelte.js';
   let mode = $state("BUY");
   let yesNo = $state("YES");
   let {market, yesPrice, noPrice} = $props();
@@ -19,6 +19,13 @@
   $effect(() => {
     if(typeof amount === 'number'){
       amount = Math.round(amount);
+    }
+  });
+  $effect(() => {
+    if(stockOwnedNo > 0){
+      yesNo = "NO";
+    } else if(stockOwnedYes > 0){
+      yesNo = "YES";
     }
   });
   function buy(){
@@ -46,10 +53,15 @@
   let stockOwnedYes = $state(0);
   let stockOwnedNo = $state(0);
   let stockOwned = $derived(yesNo === "YES" ? stockOwnedYes : stockOwnedNo);
+  let stockOwnedTotal = $derived(stockOwnedYes + stockOwnedNo);
   onMount(()=>{
-    const stocks = getStocks();
-    stockOwnedYes = getStockAmount(market.slug, "YES", stocks);
-    stockOwnedNo = getStockAmount(market.slug, "NO", stocks);
+    $effect(() => {
+      stockOwnedYes = getStockAmount(market.slug, "YES", user.stocks);
+      stockOwnedNo = getStockAmount(market.slug, "NO", user.stocks);
+    })
+    const urlParams = new URLSearchParams(window.location.search);
+    mode = urlParams.get('mode') === "SELL" ? "SELL" : "BUY";
+    yesNo = urlParams.get('yesNo') === "NO" ? "NO" : "YES";
   })
 </script>
 
@@ -185,25 +197,35 @@
   span{
       font-weight: normal;
   }
+  .noSell{
+      cursor: not-allowed !important;
+      opacity: 0.3;
+  }
+  .disallowed{
+      cursor: not-allowed !important;
+      opacity: 0.5;
+      background: gray;
+      color: white;
+  }
 </style>
 <main>
   <div id="modeSelector">
-    <p class={mode === "BUY" ? "activated" : ""} onclick={mode="BUY"}>Buy</p>
-    <p class={mode === "SELL" ? "activated" : ""} onclick={mode="SELL"}>Sell</p>
+    <p class={mode === "BUY" ? "activated" : ""} onclick={()=>{mode="BUY"}}>Buy</p>
+    <p class='{mode === "SELL" ? "activated" : ""} {stockOwnedTotal === 0 ? "noSell" : ""}' title={stockOwnedTotal === 0 ? "You own no shares to sell" : ""} onclick={()=>{if(stockOwnedTotal>0)mode="SELL"}}>Sell</p>
   </div>
   <hr>
   <section id="buyMenu">
-    <div id="yesNoMenu">
-      <div id="yes" class='yesNo {yesNo === "NO" ? "deactivated" : "yesActivated"}' onclick={yesNo="YES"}>
-        <p class="name">Yes</p>
-        <p class="price">{yesPrice} 🪙</p>
-      </div>
-      <div id="no" class='yesNo {yesNo === "YES" ? "deactivated" : "noActivated"}' onclick={yesNo="NO"}>
-        <p class="name">No</p>
-        <p class="price">{noPrice} 🪙</p>
-      </div>
-    </div>
     {#if mode === "BUY"}
+      <div id="yesNoMenu">
+        <div id="yes" class='yesNo {yesNo === "NO" ? "deactivated" : "yesActivated"} {stockOwnedNo !== 0 ? "disallowed" : ""} ' title={stockOwnedNo !== 0 ? "Sell your No shares first" : ""} onclick={()=>{if(stockOwnedNo === 0) yesNo="YES"}}>
+          <p class="name">Yes</p>
+          <p class="price">{yesPrice} 🪙</p>
+        </div>
+        <div id="no" class='yesNo {yesNo === "YES" ? "deactivated" : "noActivated"}  {stockOwnedYes !== 0 ? "disallowed" : ""}' title={stockOwnedYes !== 0 ? "Sell your Yes shares first" : ""} onclick={()=>{if(stockOwnedYes === 0) yesNo="NO"}}>
+          <p class="name">No</p>
+          <p class="price">{noPrice} 🪙</p>
+        </div>
+      </div>
       <p id="explanation">ℹ You will receive 100 🪙 for each share if you predict correctly. You can sell your shares at anytime at current market price.</p>
     {/if}
 
@@ -232,7 +254,7 @@
       </div>
       {#if user.balance >= (yesNo === "YES" ? yesPrice * amount : noPrice * amount) }
         <button onclick={buy}>
-          Buy {amount} for {yesNo === "YES" ? formatCoinUSD(yesPrice * amount) : formatCoinUSD(noPrice * amount)}
+          Buy {amount} {lowercaseAllExceptFirst(yesNo)} share(s) for {yesNo === "YES" ? formatCoinUSD(yesPrice * amount) : formatCoinUSD(noPrice * amount)}
         </button>
       {:else}
         <button style="background: gray; cursor: not-allowed;">

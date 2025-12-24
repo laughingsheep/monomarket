@@ -2,15 +2,15 @@
   import Nav from "../../Nav.svelte";
   import TransactionWidget from "./TransactionWidget.svelte";
   import PriceHistory from "./PriceHistory.svelte";
-
+  import { calculateSharePrice } from '$lib/index.svelte.js';
 
 
   let { data } = $props();
   let market = data.market
   const longDate = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   let prices = JSON.parse(market["outcomePrices"]).map(Number);
-  let yesPrice = Math.round(prices[0] * 100);
-  let noPrice = Math.round(prices[1] * 100);
+  let yesPrice = calculateSharePrice(prices[0]);
+  let noPrice = calculateSharePrice(prices[1]);
   function formatCoinUSD(amount) {
     const usd = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -21,7 +21,7 @@
     // Replace the first currency symbol occurrence
     return usd.replace(/^\$/, '') +  " 🪙";
   }
-
+  console.log(market.endDate)
 </script>
 <Nav/>
 <svelte:head>
@@ -35,7 +35,11 @@
           <img src={market["icon"]  || "/noImage.png" } alt="Market icon" />
           <h1>{market["question"]}</h1>
         </div>
-        <p id="small">{formatCoinUSD(market.volume * 100)} Vol. · Ends {longDate.format(new Date(market.endDate))} at latest</p>
+        {#if market.endDate}
+          <p id="small">{formatCoinUSD(market.volume * 100)} Vol. · Ends {longDate.format(new Date(market.endDate))} at latest</p>
+        {:else}
+            <p id="small">{formatCoinUSD(market.volume * 100)} Vol. · Overdue on prediction judgment </p>
+        {/if}
         <PriceHistory {yesPrice} priceHistory={data.priceHistory}/>
         <div style="margin-top: 16px;">
           <h1>Rules</h1>

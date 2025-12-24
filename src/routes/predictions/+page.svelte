@@ -1,12 +1,8 @@
 <script>
-import { getStocks } from "$lib/index.svelte.js";
+import { user } from "$lib/index.svelte.js";
 import Nav from "../Nav.svelte";
 import Prediction from "./Prediction.svelte";
 import { onMount } from "svelte";
-let stocks = $state([]);
-onMount(()=>{
-  stocks = getStocks()
-});
 </script>
 <Nav/>
 <svelte:head>
@@ -15,8 +11,11 @@ onMount(()=>{
 <main>
   <section>
     <h1>My Predictions</h1>
+    {#if user.stocks.length === 0}
+      <p>You have no predictions yet. Explore markets to make your first prediction!</p>
+    {/if}
     <div class="stocks">
-      {#each stocks as stock}
+      {#each user.stocks as stock}
         <Prediction {stock}/>
       {/each}
     </div>

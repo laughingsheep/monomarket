@@ -2,6 +2,7 @@
   import Chart from 'chart.js/auto';
   import {onMount} from "svelte";
   import 'chartjs-adapter-date-fns';
+  import {calculateSharePrice} from "$lib/index.svelte.js";
   let { priceHistory, yesPrice} = $props();
   let displayPrice = $state(yesPrice);
   let chartElement = null;
@@ -10,8 +11,8 @@
     y: Number(p) * 100,
   }));
   function change(value){
-    displayPrice = Math.round(value);
-    return value;
+    displayPrice = calculateSharePrice(value / 100);
+    return displayPrice;
   }
   function colorForValue(v){
     v=Math.max(0,Math.min(100,+v));
@@ -43,18 +44,6 @@
       options: {
         responsive: false,
         parsing: true,
-        onHover: (event, activeElements, chart) => {
-          const el = activeElements?.[0];
-          if (!el) return;
-          const { datasetIndex, index } = el;
-          const ds = chart.data.datasets[datasetIndex];
-          const x = chart.data.labels[index];
-          const y = ds.data[index];
-
-          // your logic on hover:
-          // e.g., update UI, show custom tooltip, highlight
-          // console.log({ datasetIndex, index, x, y });
-        },
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -63,7 +52,7 @@
             callbacks: {
               // Format tooltip label
 
-              label: (ctx) => `Price: ${Math.round(change(ctx.parsed.y))}`
+              label: (ctx) => `Price: ${change(ctx.parsed.y)}`
             }
           }
         },

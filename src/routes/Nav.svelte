@@ -1,17 +1,22 @@
 <script>
-  import { user, formatCoins} from "$lib/index.svelte.js";
+  import { user, formatCoins, saveStocks} from "$lib/index.svelte.js";
   import {onMount} from "svelte";
   import {Toaster} from "svelte-french-toast";
   let searchTerm = $state("");
   let loc = $state();
   let inputField = $state();
   onMount(()=>{
+    if(localStorage.getItem("stocks") == null){
+      user.stocks = [];
+      saveStocks();
+    }
+    user.stocks = JSON.parse(localStorage.getItem("stocks"));
     if(localStorage.getItem("balance") == null){
       user.balance = 1000;
       localStorage.setItem("balance", user.balance);
     }
-    loc = location.pathname;
     user.balance = parseInt(localStorage.getItem("balance"));
+    loc = location.pathname;
     if(location.pathname.split("/")[1] === "search"){
       searchTerm = decodeURI(location.pathname.split("/").at(-1));
       inputField.focus()

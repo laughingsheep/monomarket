@@ -11,7 +11,7 @@
   async function loadMarkets() {
     if (loading) return;
     loading = true;
-    const res = await fetch(`/explore/${page}`);
+    const res = await fetch(`/api/explore/${page}`);
     if (!res.ok) {
       loading = false;
       return;
@@ -43,6 +43,16 @@
   <title>Monomarket | Free Prediction Market</title>
 </svelte:head>
 <main>
+  <div id="topics">
+    <p>All</p>
+    <p>Politics</p>
+    <p>Tech</p>
+    <p>Finance</p>
+    <p>Culture</p>
+    <p>Economy</p>
+    <p>World</p>
+    <p>Crypto</p>
+  </div>
   <section>
     {#each markets as market}
       <MarketOverview {market} />
@@ -57,6 +67,13 @@
 </main>
 
 <style>
+    #topics{
+        display: flex;
+        gap: 15px;
+        overflow-x: auto;
+        padding: 10px 0;
+        margin-bottom: 10px;
+    }
     main {
         width: 100vw;
         display: flex;
@@ -67,9 +84,9 @@
     section {
         max-width: 1400px;
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
         gap: 20px;
-        justify-content: center;
     }
 
     .loading {

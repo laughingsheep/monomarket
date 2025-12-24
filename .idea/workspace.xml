@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca018920-cb8c-4c9b-9b6e-547d617d3822" name="Changes" comment="Cloudflare adapter">
+    <list default="true" id="ca018920-cb8c-4c9b-9b6e-547d617d3822" name="Changes" comment="update svelte-french-toast to version 2.0.0-alpha.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/MarketOverview.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/MarketOverview.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/index.svelte.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/index.svelte.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Nav.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Nav.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/PriceHistory.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/PriceHistory.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/TransactionWidget.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/TransactionWidget.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/explore/[page]/+server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/api/explore/[page]/+server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/predictions/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/predictions/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/predictions/Prediction.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/predictions/Prediction.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +52,9 @@
     "accountId": "8ceeef66-c226-4142-a233-393bc0bd6969"
   }
 }]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -73,6 +84,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "editor.preferences.tabs",
     "ts.external.directory.path": "/Users/jostbohmann/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
@@ -83,11 +95,11 @@
       <recent name="$PROJECT_DIR$/src/routes/predictions" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/routes/api" />
       <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/src/routes/search/[term]" />
       <recent name="$PROJECT_DIR$/src/lib" />
       <recent name="$PROJECT_DIR$/src/routes/explore/[page]" />
-      <recent name="$PROJECT_DIR$/src/routes/explore" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -114,7 +126,7 @@
       <workItem from="1766430124062" duration="885000" />
       <workItem from="1766431022936" duration="944000" />
       <workItem from="1766450249885" duration="49000" />
-      <workItem from="1766497900905" duration="10157000" />
+      <workItem from="1766497900905" duration="22650000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <option name="closed" value="true" />
@@ -140,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766509772743</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update svelte-french-toast to version 2.0.0-alpha.0">
+      <option name="closed" value="true" />
+      <created>1766510725909</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1766510725909</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -161,7 +181,8 @@
     <MESSAGE value="V1" />
     <MESSAGE value="V2" />
     <MESSAGE value="Cloudflare adapter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cloudflare adapter" />
+    <MESSAGE value="update svelte-french-toast to version 2.0.0-alpha.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="update svelte-french-toast to version 2.0.0-alpha.0" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
