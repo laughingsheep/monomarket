@@ -82,11 +82,18 @@
     }
 
     section {
+        width: 100%;
         max-width: 1400px;
         display: flex;
-        flex-direction: row;
         flex-wrap: wrap;
         gap: 20px;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    section > :global(*) {
+        flex-grow: 1;
+        min-width: 300px;
     }
 
     .loading {
