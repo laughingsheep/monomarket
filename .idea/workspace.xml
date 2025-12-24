@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ca018920-cb8c-4c9b-9b6e-547d617d3822" name="Changes" comment="made responsive">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/predictions/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/predictions/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Nav.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Nav.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/api/explore/[page]/+server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/api/explore/[topic]/[page]/+server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,11 +90,11 @@
       <recent name="$PROJECT_DIR$/src/routes/predictions" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/routes/api/explore/[topic]/[page]" />
+      <recent name="$PROJECT_DIR$/src/routes/api/explore/[topic]" />
       <recent name="$PROJECT_DIR$/src/routes/api" />
       <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/src/routes/search/[term]" />
-      <recent name="$PROJECT_DIR$/src/lib" />
-      <recent name="$PROJECT_DIR$/src/routes/explore/[page]" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -117,7 +121,7 @@
       <workItem from="1766430124062" duration="885000" />
       <workItem from="1766431022936" duration="944000" />
       <workItem from="1766450249885" duration="49000" />
-      <workItem from="1766497900905" duration="23377000" />
+      <workItem from="1766497900905" duration="27836000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <option name="closed" value="true" />
@@ -167,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766575371345</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="made responsive">
+      <option name="closed" value="true" />
+      <created>1766575690956</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1766575690956</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

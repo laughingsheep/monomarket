@@ -119,6 +119,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 1400px;
+      width: 1360px;
   }
 </style>
