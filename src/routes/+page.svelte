@@ -16,7 +16,7 @@
       Politics: 2,
       Tech: 1401,
       Finance: 120,
-      Culture: "culture",
+      Culture: 596,
       Economy: 100328,
       World: 101970,
       Crypto: 21,
@@ -41,7 +41,7 @@
     })
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) loadMarkets();
+        if (entry.isIntersecting) loadMarkets(topic);
       },
       { rootMargin: "500px" }
     );
@@ -65,7 +65,7 @@
     <p onclick={() => (topic = 'Finance')} class:selected={topic === 'Finance'}><Landmark />Finance</p>
     <p onclick={() => (topic = 'Culture')} class:selected={topic === 'Culture'}><Users />Culture</p>
     <p onclick={() => (topic = 'Economy')} class:selected={topic === 'Economy'}><CircleDollarSign />Economy</p>
-    <p onclick={() => (topic = 'World')} class:selected={topic === 'World'}><Earth />World</p>
+    <p onclick={() => (topic = 'World')} class:selected={topic === 'World'}><Earth />Worldwide</p>
     <p onclick={() => (topic = 'Crypto')} class:selected={topic === 'Crypto'}><Bitcoin />Crypto</p>
   </div>
   <section>

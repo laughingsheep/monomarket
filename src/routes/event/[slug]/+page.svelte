@@ -80,7 +80,7 @@
         justify-content: center;
     }
     section{
-        width: 1400px;
+        width: 1360px;
     }
     img{
         width: 64px;
