@@ -2,16 +2,26 @@
   import { onMount } from "svelte";
   import MarketOverview from "$lib/MarketOverview.svelte";
   import Nav from "./Nav.svelte";
-
-  let markets = [];
+  import {Bitcoin, CircleDollarSign, Earth, GalleryVerticalEnd, Landmark, Monitor, Scale, Users} from 'lucide-svelte';
+  let markets = $state([]);
   let page = 1;
   let loading = false;
   let sentinel;
 
-  async function loadMarkets() {
+  async function loadMarkets(topicName) {
     if (loading) return;
     loading = true;
-    const res = await fetch(`/api/explore/${page}`);
+    let topics = {
+      All: 0,
+      Politics: 2,
+      Tech: 1401,
+      Finance: 120,
+      Culture: "culture",
+      Economy: 100328,
+      World: 101970,
+      Crypto: 21,
+    }
+    const res = await fetch(`/api/explore/${topics[topicName]}/${page}`);
     if (!res.ok) {
       loading = false;
       return;
@@ -23,8 +33,12 @@
   }
 
   onMount(() => {
-    loadMarkets();
-
+    loadMarkets("All");
+    $effect(()=>{
+      page = 1;
+      markets = [];
+      loadMarkets(topic);
+    })
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) loadMarkets();
@@ -36,6 +50,7 @@
 
     return () => observer.disconnect();
   });
+  let topic = $state("All");
 </script>
 
 <Nav />
@@ -44,14 +59,14 @@
 </svelte:head>
 <main>
   <div id="topics">
-    <p>All</p>
-    <p>Politics</p>
-    <p>Tech</p>
-    <p>Finance</p>
-    <p>Culture</p>
-    <p>Economy</p>
-    <p>World</p>
-    <p>Crypto</p>
+    <p onclick={() => (topic = 'All')} class:selected={topic === 'All'}><GalleryVerticalEnd />All</p>
+    <p onclick={() => (topic = 'Politics')} class:selected={topic === 'Politics'}> <Scale />Politics</p>
+    <p onclick={() => (topic = 'Tech')} class:selected={topic === 'Tech'}><Monitor />Tech</p>
+    <p onclick={() => (topic = 'Finance')} class:selected={topic === 'Finance'}><Landmark />Finance</p>
+    <p onclick={() => (topic = 'Culture')} class:selected={topic === 'Culture'}><Users />Culture</p>
+    <p onclick={() => (topic = 'Economy')} class:selected={topic === 'Economy'}><CircleDollarSign />Economy</p>
+    <p onclick={() => (topic = 'World')} class:selected={topic === 'World'}><Earth />World</p>
+    <p onclick={() => (topic = 'Crypto')} class:selected={topic === 'Crypto'}><Bitcoin />Crypto</p>
   </div>
   <section>
     {#each markets as market}
@@ -62,14 +77,28 @@
   {#if loading}
     <p class="loading">Loading more…</p>
   {/if}
-
   <div bind:this={sentinel}></div>
 </main>
 
 <style>
+    .selected{
+        color: #2e5cff !important;
+    }
+    #topics p{
+        gap: 5px;
+        display: flex;
+        align-items: center;
+        padding: 5px 0px;
+        border-radius: 8px;
+        font-size: 20px;
+        user-select: none;
+        cursor: pointer;
+    }
     #topics{
         display: flex;
-        gap: 15px;
+        gap: 30px;
+        align-items: center;
+
         overflow-x: auto;
         padding: 10px 0;
         margin-bottom: 10px;
