@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca018920-cb8c-4c9b-9b6e-547d617d3822" name="Changes" comment="refactor: update market data handling and improve user stock management">
+    <list default="true" id="ca018920-cb8c-4c9b-9b6e-547d617d3822" name="Changes" comment="made responsive">
       <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/predictions/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/predictions/+page.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +117,7 @@
       <workItem from="1766430124062" duration="885000" />
       <workItem from="1766431022936" duration="944000" />
       <workItem from="1766450249885" duration="49000" />
-      <workItem from="1766497900905" duration="23059000" />
+      <workItem from="1766497900905" duration="23377000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <option name="closed" value="true" />
@@ -158,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766574889394</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="made responsive">
+      <option name="closed" value="true" />
+      <created>1766575371340</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1766575371345</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,7 +190,8 @@
     <MESSAGE value="Cloudflare adapter" />
     <MESSAGE value="update svelte-french-toast to version 2.0.0-alpha.0" />
     <MESSAGE value="refactor: update market data handling and improve user stock management" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: update market data handling and improve user stock management" />
+    <MESSAGE value="made responsive" />
+    <option name="LAST_COMMIT_MESSAGE" value="made responsive" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

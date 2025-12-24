@@ -73,6 +73,10 @@
         overflow-x: auto;
         padding: 10px 0;
         margin-bottom: 10px;
+        width: 100%;
+        max-width: 1400px;
+        padding: 10px 20px;
+        box-sizing: border-box;
     }
     main {
         width: 100vw;

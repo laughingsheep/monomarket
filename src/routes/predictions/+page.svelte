@@ -2,7 +2,6 @@
 import { user } from "$lib/index.svelte.js";
 import Nav from "../Nav.svelte";
 import Prediction from "./Prediction.svelte";
-import { onMount } from "svelte";
 </script>
 <Nav/>
 <svelte:head>
@@ -28,14 +27,22 @@ import { onMount } from "svelte";
     main{
         width: 100vw;
         display: flex;
-        align-items: center;
         justify-content: center;
     }
+    section {
+        width: 100%;
+        max-width: 1400px;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
     .stocks {
-        width: 1400px;
         display: flex;
-        flex-direction: row;
         flex-wrap: wrap;
         gap: 20px;
+    }
+
+    .stocks > :global(*) {
+        flex-grow: 1;
+        min-width: 300px;
     }
 </style>
