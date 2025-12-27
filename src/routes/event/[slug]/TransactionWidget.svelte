@@ -34,7 +34,7 @@
         user.tutorialPhase = 3;
         updateTutorialPhase();
       }else{
-        toast.error("Please buy 'Yes' shares to continue the tutorial",{
+        toast.error("Please buy a 'Yes' share to continue the tutorial. Select the 'Yes' tab above",{
           position: "bottom-right"
         } );
         return;
@@ -48,6 +48,12 @@
     } );
   }
   function sell(){
+    if(market.slug === "monomarket-tutorial"){
+      toast.error("Selling your tutorial shares is not allowed as they are important for the remainder of the tutorial.",{
+        position: "bottom-right"
+      } );
+      return;
+    }
     user.balance += (yesNo === "YES" ? yesPrice * amount : noPrice * amount);
     localStorage.setItem("balance", user.balance);
     removeStock(market.slug, yesNo, amount);

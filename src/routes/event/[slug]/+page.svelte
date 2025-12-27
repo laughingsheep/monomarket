@@ -2,7 +2,7 @@
   import Nav from "../../Nav.svelte";
   import TransactionWidget from "./TransactionWidget.svelte";
   import PriceHistory from "./PriceHistory.svelte";
-  import {calculateSharePrice, user} from '$lib/index.svelte.js';
+  import {calculateSharePrice, updateTutorialPhase, user} from '$lib/index.svelte.js';
   import PopOver from "$lib/tutorial/PopOver.svelte";
   import {onMount} from "svelte";
 
@@ -26,6 +26,13 @@
   onMount(() => {
     if(user.tutorialPhase === 1){
       user.tutorialPhase = 2;
+      updateTutorialPhase()
+    }
+    if(market.slug === "monomarket-tutorial" && user.tutorialPhase > 3){
+      location.href = "/"
+    }
+    if(market.closed){
+      location.href = "/";
     }
   })
   console.log(market.endDate)

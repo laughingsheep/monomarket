@@ -30,7 +30,7 @@
     }
     const data = await res.json();
     markets = [...markets, ...data];
-    if([0, 1].includes(user.tutorialPhase) && page === 1){
+    if([0, 1, 2, 3].includes(user.tutorialPhase) && page === 1){
       markets = [tutorialMarket, ...markets];
       if(user.tutorialPhase === 0){
         isTutorial = true;
