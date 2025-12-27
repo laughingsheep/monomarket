@@ -74,3 +74,17 @@ export const user = $state({
   balance: null,
   stocks: []
 });
+
+export const tutorialMarket = {
+  "question": "Will you enjoy using Monomarket?",
+  "slug": "monomarket-tutorial",
+  "endDate": new Date(),
+  "liquidity": "5211906.61263",
+  "description": "Welcome to your first Monomarket question!\nThis is a fake question just for the tutorial. This market will resolve to Yes, because I just know you will enjoy using Monomarket!",
+  "outcomes": "[\"Yes\", \"No\"]",
+  "outcomePrices": "[\"0.80\", \"0.20\"]",
+  "volume": "8500855.780657",
+  "closed": false,
+  "volumeNum": 8500855.780657,
+  "clobTokenIds": "[\"27695328018487126865140678987084292751433108128829892791442349095512543527405\", \"66929654862706119595556457864718719645706521900611031775760907439327687408012\"]",
+}

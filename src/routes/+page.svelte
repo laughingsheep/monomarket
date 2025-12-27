@@ -3,6 +3,8 @@
   import MarketOverview from "$lib/MarketOverview.svelte";
   import Nav from "./Nav.svelte";
   import {Bitcoin, CircleDollarSign, Earth, GalleryVerticalEnd, Landmark, Monitor, Scale, Users} from 'lucide-svelte';
+  import First from "$lib/tutorial/First.svelte";
+  import {tutorialMarket} from "$lib/index.svelte.js";
   let markets = $state([]);
   let page = 1;
   let loading = false;
@@ -28,6 +30,11 @@
     }
     const data = await res.json();
     markets = [...markets, ...data];
+    if(localStorage.getItem("tutorialPhase") == null && page === 1){
+      isTutorial = true;
+      markets = [tutorialMarket, ...markets];
+
+    }
     page++;
     loading = false;
   }
@@ -51,8 +58,12 @@
     return () => observer.disconnect();
   });
   let topic = $state("All");
+  let isTutorial = $state(false);
 </script>
 
+{#if isTutorial}
+  <First/>
+{/if}
 <Nav />
 <svelte:head>
   <title>Monomarket | Free Prediction Market</title>

@@ -36,7 +36,7 @@
           <h1>{market["question"]}</h1>
         </div>
         {#if market.endDate}
-          <p id="small">{formatCoinUSD(market.volume * 100)} Vol. · Ends {longDate.format(new Date(market.endDate))} at latest</p>
+          <p id="small">{formatCoinUSD(market.volume * 100)} Vol. · Expected to end {longDate.format(new Date(market.endDate))}</p>
         {:else}
             <p id="small">{formatCoinUSD(market.volume * 100)} Vol. · Overdue on prediction judgment </p>
         {/if}

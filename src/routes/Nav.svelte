@@ -12,7 +12,7 @@
     }
     user.stocks = JSON.parse(localStorage.getItem("stocks"));
     if(localStorage.getItem("balance") == null){
-      user.balance = 1000;
+      user.balance = 80;
       localStorage.setItem("balance", user.balance);
     }
     user.balance = parseInt(localStorage.getItem("balance"));

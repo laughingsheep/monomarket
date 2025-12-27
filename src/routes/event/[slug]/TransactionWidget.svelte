@@ -207,6 +207,20 @@
       background: gray;
       color: white;
   }
+  .quickadd{
+      padding: 5px 10px;
+      border: 1px rgb(230, 232, 234) solid;
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+
+  }
+  .quickadds{
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 10px;
+  }
 </style>
 <main>
   <div id="modeSelector">
@@ -232,6 +246,14 @@
     <div id="shareInput">
       <h2>Shares</h2>
       <input inputmode="numeric" pattern="[0-9]*" step="1" autofocus type="number" min="1" bind:value={amount} />
+    </div>
+    <div class="quickadds">
+      <div class="quickadd" onclick={()=>{amount+=1}}>+1</div>
+      <div class="quickadd" onclick={()=>{amount+=5}}>+5</div>
+      <div class="quickadd" onclick={()=>{amount+=10}}>+10</div>
+      {#if mode === "SELL"}
+        <div class="quickadd" onclick={()=>{amount=stockOwnedTotal}}>All</div>
+      {/if}
     </div>
     <hr style="margin-top: 15px; margin-bottom: 15px;" />
     {#if mode === "BUY"}
@@ -268,11 +290,11 @@
       </div>
       <div class="stat">
         <p><b>You'll sell:</b></p>
-        <p  class="number" style="color: #e23a39">-{amount} Shares</p>
+        <p  class="number" style="color: #e23a39">-{amount} <span>Share(s)</span></p>
       </div>
       <div class="stat">
         <p><b>Shares remaining:</b></p>
-        <p  class="number" style="color: black">{stockOwned - amount} Shares</p>
+        <p  class="number" style="color: black">{stockOwned - amount} <span>Share(s)</span></p>
       </div>
       <div class="stat">
         <p><b>Payout:</b> <b>{amount}</b> Share(s) * {yesNo === "YES" ? yesPrice : noPrice} 🪙</p>

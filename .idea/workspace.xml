@@ -4,10 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca018920-cb8c-4c9b-9b6e-547d617d3822" name="Changes" comment="V4">
+    <list default="true" id="ca018920-cb8c-4c9b-9b6e-547d617d3822" name="Changes" comment="refactor: adjust layout and improve topic handling in page component">
+      <change afterPath="$PROJECT_DIR$/src/lib/tutorial/First.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/tutorial/PopOver.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/example.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/monomarketmockup.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/MarketOverview.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/MarketOverview.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/index.svelte.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/index.svelte.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/predictions/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/predictions/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Nav.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Nav.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/api/eventData/[slug]/+server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/api/eventData/[slug]/+server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/+page.server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/TransactionWidget.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/TransactionWidget.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/predictions/Prediction.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/predictions/Prediction.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,24 +39,26 @@
         <option value="+page.svelte" />
         <option value="JavaScript File" />
         <option value="+page.svelt" />
+        <option value="first.svelte" />
+        <option value="PopOver.svelte" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "laughingsheep"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;laughingsheep&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/laughingsheep/monomarket.git",
-    "accountId": "8ceeef66-c226-4142-a233-393bc0bd6969"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/laughingsheep/monomarket.git&quot;,
+    &quot;accountId&quot;: &quot;8ceeef66-c226-4142-a233-393bc0bd6969&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
@@ -61,36 +76,37 @@
     <option name="sortByType" value="true" />
     <option name="sortKey" value="BY_TYPE" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "main",
-    "javascript.preferred.runtime.type.id": "bun",
-    "last_opened_file_path": "/Users/jostbohmann/Documents/monomarket/src/routes/predictions",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "editor.preferences.tabs",
-    "ts.external.directory.path": "/Users/jostbohmann/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Bun.TransactionWidget.svelte.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;bun&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jostbohmann/Documents/monomarket/src/routes/predictions&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/jostbohmann/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/routes/predictions" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/src/routes/api/explore/[topic]/[page]" />
       <recent name="$PROJECT_DIR$/src/routes/api/explore/[topic]" />
       <recent name="$PROJECT_DIR$/src/routes/api" />
-      <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/src/routes/search/[term]" />
     </key>
   </component>
@@ -118,7 +134,9 @@
       <workItem from="1766430124062" duration="885000" />
       <workItem from="1766431022936" duration="944000" />
       <workItem from="1766450249885" duration="49000" />
-      <workItem from="1766497900905" duration="30936000" />
+      <workItem from="1766497900905" duration="35639000" />
+      <workItem from="1766755240040" duration="2214000" />
+      <workItem from="1766765363887" duration="13497000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <option name="closed" value="true" />
@@ -192,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766585566223</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="refactor: adjust layout and improve topic handling in page component">
+      <option name="closed" value="true" />
+      <created>1766587657222</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1766587657222</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,7 +244,8 @@
     <MESSAGE value="made responsive" />
     <MESSAGE value="V3" />
     <MESSAGE value="V4" />
-    <option name="LAST_COMMIT_MESSAGE" value="V4" />
+    <MESSAGE value="refactor: adjust layout and improve topic handling in page component" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: adjust layout and improve topic handling in page component" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

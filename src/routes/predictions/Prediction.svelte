@@ -16,8 +16,10 @@
     yesPrice = calculateSharePrice(prices[0]);
     noPrice = calculateSharePrice(prices[1]);
     currentPrice = stock.yesNo === "YES" ? yesPrice : noPrice;
-    chanceColor = colorForValue(yesPrice);
+    chanceColor = colorForValue(currentPrice);
     hasWon = (stock.yesNo === "YES" && yesPrice === 99) || (stock.yesNo === "NO" && noPrice === 99)
+    if(market2.slug === "monomarket-tutorial") hasWon = true;
+    if(market2.slug === "monomarket-tutorial") market2.closed = true;
     return market2
   }
   const market = loadMarket();
@@ -35,8 +37,8 @@
 {#await market}
 
 {:then market}
-  <main onclick={redirect}>
-    <div id="top">
+  <main>
+    <div id="top" onclick={redirect}>
       <div style="display: flex; flex-direction:column;">
         <img src={market["icon"]  || "/noImage.png" } alt="Market icon" />
       </div>
@@ -95,7 +97,7 @@
         {#if market.endDate}
           <div class="stat">
             <h4>{longDate.format(new Date(market.endDate))}</h4>
-            <h5>Ends at</h5>
+            <h5>End Date</h5>
           </div>
         {:else}
           <div class="stat">
@@ -104,9 +106,13 @@
           </div>
         {/if}
       </div>
+      <div id="actions" style="--chance: {yesPrice}%">
+        <button id="yes" onclick={location.href = '/event/' + market.slug + "?mode=BUY"} >Buy more</button>
+        <button id="no" onclick={location.href = '/event/' + market.slug + "?mode=SELL"}>Sell share(s)</button>
+      </div>
     {:else}
       {#if hasWon}
-        <button onclick={()=>{claimWinnings();removeAllStock(stock.slug)}}>Claim {formatCoins(stock.amount * currentPrice)} (+{formatCoins(stock.amount * currentPrice - stock.totalCost)})</button>
+        <button onclick={()=>{claimWinnings();removeAllStock(stock.slug)}}>Claim {formatCoins(stock.amount * 100)} (+{formatCoins(stock.amount * 100 - stock.totalCost)})</button>
       {:else}
         <button id="hide" onclick={()=>{removeAllStock(stock.slug)}}>Hide</button>
       {/if}
@@ -132,10 +138,6 @@
     .lose{
         background: black !important;
         color: white !important;
-    }
-    #no{
-        background: #fdeeee !important;
-        color: #e23a39 !important;
     }
     h6{
         font-size:16px;
@@ -183,6 +185,7 @@
         overflow: hidden;
         display: flex;
         gap: 10px;
+        flex-direction: column;
         flex-wrap: wrap;           /* hide overflow */
     }
     main{
@@ -193,6 +196,13 @@
     }
     #bottom{
         display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+    #actions{
+        display: flex;
+        gap: 20px;
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-end;
@@ -211,11 +221,11 @@
     }
     #yes{
         color: white;
-        background: linear-gradient(to right, green 0, green var(--chance), #2fa159 var(--chance), #2fa159 100%);
+        background: #2fa159;
     }
     #no{
         color: white;
-        background: linear-gradient(to right, #e23a39 0, #e23a39 calc(100% - var(--chance)), #eb6e6e calc(100% - var(--chance)), #eb6e6e 100%);
+        background: #e23a39;
     }
     #hide{
         background: #eeeeee;
@@ -232,7 +242,7 @@
     main{
         box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0 0 0 / 0.04) 0px 8px 16px 0px;
         width: 300px;
-        height: 160px;
+        height: 210px;
         outline: 1px #e7e8ea solid;
         border-radius: 15px;
         padding: 10px;
