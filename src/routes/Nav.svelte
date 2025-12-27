@@ -3,9 +3,12 @@
   import {onMount} from "svelte";
   import {Toaster} from "svelte-french-toast";
   import PopOver from "$lib/tutorial/PopOver.svelte";
+  import {Tween} from "svelte/motion";
+  import {cubicOut} from "svelte/easing";
   let searchTerm = $state("");
   let loc = $state();
   let inputField = $state();
+  let animatedBalance = $state(0);
   onMount(()=>{
     if(localStorage.getItem("stocks") == null){
       user.stocks = [];
@@ -21,12 +24,22 @@
       localStorage.setItem("balance", user.balance);
     }
     user.balance = parseInt(localStorage.getItem("balance"));
+    animatedBalance = new Tween(user.balance, {
+      duration: 400,
+      easing: cubicOut
+    });
+    $effect(()=>{
+      animatedBalance.target = user.balance;
+    })
+
     loc = location.pathname;
     if(location.pathname.split("/")[1] === "search"){
       searchTerm = decodeURI(location.pathname.split("/").at(-1));
       inputField.focus()
     }
+
   });
+
   function search(e){
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -53,7 +66,7 @@
       </div>
     </div>
     <div>
-      <b>{formatCoins(user.balance)}</b>
+      <b>{formatCoins(animatedBalance.current)}</b>
     </div>
 
   </main>

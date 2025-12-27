@@ -9,7 +9,7 @@
   let page = 1;
   let loading = false;
   let sentinel;
-
+  let seenIds = new Set();
   async function loadMarkets(topicName) {
     if (loading) return;
     loading = true;
@@ -28,7 +28,25 @@
       loading = false;
       return;
     }
-    const data = await res.json();
+    let data = await res.json();
+    data = data.filter(m => JSON.parse(m.outcomes)[0] === 'Yes' && JSON.parse(m.outcomes)[1] === 'No');
+    data = data.filter(m => JSON.parse(m.outcomePrices)[0] < 0.985)
+    data = data.filter(m => JSON.parse(m.outcomePrices)[1] < 0.985)
+    const filteredData = data.filter(item => {
+      if (!Array.isArray(item.events)) return true;
+      for (const event of item.events) {
+        if (seenIds.has(event.id)) {
+          return false;
+        }
+      }
+      for (const event of item.events) {
+        seenIds.add(event.id);
+      }
+
+      return true;
+    });
+    data = filteredData;
+
     markets = [...markets, ...data];
     if([0, 1, 2, 3].includes(user.tutorialPhase) && page === 1){
       markets = [tutorialMarket, ...markets];

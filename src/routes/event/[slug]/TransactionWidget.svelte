@@ -147,7 +147,9 @@
   .noActivated .price{
       color: white;
   }
-
+  button:active {
+      transform: scale(0.95);
+  }
   .yesNo{
       height: 50px;
       width: 150px;

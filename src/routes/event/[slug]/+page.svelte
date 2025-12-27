@@ -72,7 +72,6 @@
   <PopOver highlighted={main} />
 {/if}
 <style>
-
     #round{
         border-radius: 10px;
         height: min-content;

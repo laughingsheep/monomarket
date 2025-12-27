@@ -18,7 +18,8 @@
       loading = false;
       return;
     }
-    const data = await res.json();
+    let data = await res.json();
+    data = data.filter(m => JSON.parse(m.outcomes)[0] === 'Yes' && JSON.parse(m.outcomes)[1] === 'No');
     markets = [...markets, ...data];
     page++;
     loading = false;

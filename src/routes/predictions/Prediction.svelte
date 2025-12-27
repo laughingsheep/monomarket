@@ -135,6 +135,9 @@
 
 {/await}
 <style>
+    button:active {
+        transform: scale(0.95);
+    }
     button{
           width: 100%;
           height: 50px;

@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca018920-cb8c-4c9b-9b6e-547d617d3822" name="Changes" comment="feat: implement tutorial progression and enhance user guidance">
+    <list default="true" id="ca018920-cb8c-4c9b-9b6e-547d617d3822" name="Changes" comment="tutorial softlock and glitch fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/Nav.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Nav.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/api/explore/[topic]/[page]/+server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/api/explore/[topic]/[page]/+server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/+page.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/TransactionWidget.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/TransactionWidget.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/predictions/Prediction.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/predictions/Prediction.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +128,7 @@
       <workItem from="1766450249885" duration="49000" />
       <workItem from="1766497900905" duration="35639000" />
       <workItem from="1766755240040" duration="2214000" />
-      <workItem from="1766765363887" duration="24371000" />
+      <workItem from="1766765363887" duration="27468000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <option name="closed" value="true" />
@@ -223,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766857414019</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="tutorial softlock and glitch fixes">
+      <option name="closed" value="true" />
+      <created>1766862083649</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1766862083649</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,7 +263,8 @@
     <MESSAGE value="refactor: adjust layout and improve topic handling in page component" />
     <MESSAGE value="feat: add tutorial market and enhance tutorial experience" />
     <MESSAGE value="feat: implement tutorial progression and enhance user guidance" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implement tutorial progression and enhance user guidance" />
+    <MESSAGE value="tutorial softlock and glitch fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="tutorial softlock and glitch fixes" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
