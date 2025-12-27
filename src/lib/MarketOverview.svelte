@@ -6,41 +6,15 @@
   let prices = JSON.parse(market["outcomePrices"]).map(Number);
   let yesPrice = calculateSharePrice(prices[0]);
   let noPrice = calculateSharePrice(prices[1]);
-  import { colorForValue } from '$lib/index.svelte.js';
+  import { colorForValue, user } from '$lib/index.svelte.js';
   let chanceColor = colorForValue(yesPrice);
-  let showTutorial = market.slug === "monomarket-tutorial"
-  import {autoUpdate, computePosition, offset} from '@floating-ui/dom';
+
   import PopOver from "$lib/tutorial/PopOver.svelte";
-  let tutorial = $state();
   let main = $state();
-  function updatePos(){
-    computePosition(main, tutorial, {
-      placement: "right",
-      middleware: [offset(200)],
-    }).then(({x, y}) => {
-      Object.assign(tutorial.style, {
-        left: `${x}px`,
-        top: `${y}px`,
-      });
-    });
-  }
-  onMount(()=>{
-    if(showTutorial){
-      autoUpdate(
-        main,
-        tutorial,
-        updatePos
-      );
-    }
-  })
-
-
 </script>
 
-{#if showTutorial}
-    <PopOver bind:tutorial={tutorial} />
-{/if}
-<main bind:this={main} class={showTutorial ? "tut" : ""}>
+
+<main bind:this={main}>
   <div id="top" onclick={location.href = '/event/' + market.slug}>
     <img src={market["icon"] || "/noImage.png"} alt="Market icon" />
     <h1>{market["question"]}</h1>
@@ -54,12 +28,10 @@
     <button id="no" onclick={location.href = '/event/' + market.slug + "?yesNo=NO"}>No - {noPrice}%</button>
   </div>
 </main>
-
+{#if market.slug === "monomarket-tutorial" && user.tutorialPhase === 1}
+  <PopOver highlighted={main} />
+{/if}
 <style>
-    .tut{
-        box-shadow: 0 0 0 9999px rgba(0,0,0,0.65);
-        z-index: 1;
-    }
     button{
         cursor: pointer;
     }

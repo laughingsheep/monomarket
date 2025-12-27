@@ -1,7 +1,10 @@
 <script>
+  import PopOver from "$lib/tutorial/PopOver.svelte";
+
   let { stock } = $props();
 
-  import {calculateSharePrice, colorForValue, formatCoins, removeAllStock, user} from "$lib/index.svelte.js";
+  import {calculateSharePrice, colorForValue, formatCoins, removeAllStock, updateTutorialPhase, user} from "$lib/index.svelte.js";
+  import Last from "$lib/tutorial/Last.svelte";
   const longDate = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: '2-digit' });
   let yesPrice = $state();
   let noPrice = $state();
@@ -18,26 +21,34 @@
     currentPrice = stock.yesNo === "YES" ? yesPrice : noPrice;
     chanceColor = colorForValue(currentPrice);
     hasWon = (stock.yesNo === "YES" && yesPrice === 99) || (stock.yesNo === "NO" && noPrice === 99)
-    if(market2.slug === "monomarket-tutorial") hasWon = true;
-    if(market2.slug === "monomarket-tutorial") market2.closed = true;
-    return market2
+    if(market2.slug === "monomarket-tutorial"){
+      hasWon = true;
+      yesPrice = 99;
+      market2.closed = true;
+    }
+    return market2;
   }
   const market = loadMarket();
   function claimWinnings(){
     user.balance += stock.amount * 100;
     localStorage.setItem("balance", user.balance);
+    if(user.tutorialPhase === 5){
+      user.tutorialPhase = 6;
+      updateTutorialPhase();
+    }
   }
   function redirect(){
     if(!market.closed){
       location.href = '/event/' + stock.slug + "?mode=SELL&yesNo=" + stock.yesNo;
     }
   }
+  let main = $state();
 </script>
 
 {#await market}
 
 {:then market}
-  <main>
+  <main bind:this={main}>
     <div id="top" onclick={redirect}>
       <div style="display: flex; flex-direction:column;">
         <img src={market["icon"]  || "/noImage.png" } alt="Market icon" />
@@ -118,6 +129,10 @@
       {/if}
     {/if}
   </main>
+  {#if market.slug === "monomarket-tutorial" && user.tutorialPhase === 5}
+    <PopOver highlighted={main} />
+  {/if}
+
 {/await}
 <style>
     button{

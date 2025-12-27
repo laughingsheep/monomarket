@@ -71,9 +71,9 @@
             min: 0,
             max: 100,
             ticks: {
-              stepSize: 10,        // or any integer step you want
-              precision: 0,        // force integer formatting (no decimals)
-              callback: (value) => Math.round(value) // optional: ensure integers
+              stepSize: 10,
+              precision: 0,
+              callback: (value) => Math.round(value)
             }
           }
         }
@@ -81,11 +81,22 @@
     });
   })
 </script>
-<h2 style="--color: {colorForValue(displayPrice)}">{displayPrice}% chance</h2>
+<div id="questionholder">
+  <h2 style="--color: {colorForValue(displayPrice)}">{displayPrice}% chance</h2>
+</div>
+
 <canvas width="1000" height="300" bind:this={chartElement} onmouseout={()=>{displayPrice=yesPrice}}>
 
 </canvas>
 <style>
+    #questionholder {
+        width: max-content;
+        border-radius: 5px;
+
+        background: white;
+        position: relative;
+        z-index: 2;
+    }
     canvas{
         width: 900px;
         height: 300px;

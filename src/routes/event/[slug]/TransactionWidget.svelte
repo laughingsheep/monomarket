@@ -1,6 +1,6 @@
 <script>
   import {onMount} from "svelte";
-  import {removeStock, getStockAmount, addStock, user} from '$lib/index.svelte.js';
+  import {removeStock, getStockAmount, addStock, user, updateTutorialPhase} from '$lib/index.svelte.js';
   let mode = $state("BUY");
   let yesNo = $state("YES");
   let {market, yesPrice, noPrice} = $props();
@@ -29,6 +29,17 @@
     }
   });
   function buy(){
+    if(market.slug === "monomarket-tutorial"){
+      if(yesNo === "YES"){
+        user.tutorialPhase = 3;
+        updateTutorialPhase();
+      }else{
+        toast.error("Please buy 'Yes' shares to continue the tutorial",{
+          position: "bottom-right"
+        } );
+        return;
+      }
+    }
     user.balance -= (yesNo === "YES" ? yesPrice * amount : noPrice * amount);
     localStorage.setItem("balance", user.balance);
     addStock(market.slug, yesNo, amount, (yesNo === "YES" ? yesPrice * amount : noPrice * amount));

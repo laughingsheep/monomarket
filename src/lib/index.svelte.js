@@ -70,9 +70,13 @@ export function addStock(slug, yesNo, amount, totalCost) {
   }
   saveStocks();
 }
+export function updateTutorialPhase(){
+  localStorage.setItem("tutorialPhase", user.tutorialPhase);
+}
 export const user = $state({
   balance: null,
-  stocks: []
+  stocks: [],
+  tutorialPhase: 10
 });
 
 export const tutorialMarket = {

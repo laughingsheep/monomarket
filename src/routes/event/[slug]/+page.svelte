@@ -2,7 +2,9 @@
   import Nav from "../../Nav.svelte";
   import TransactionWidget from "./TransactionWidget.svelte";
   import PriceHistory from "./PriceHistory.svelte";
-  import { calculateSharePrice } from '$lib/index.svelte.js';
+  import {calculateSharePrice, user} from '$lib/index.svelte.js';
+  import PopOver from "$lib/tutorial/PopOver.svelte";
+  import {onMount} from "svelte";
 
 
   let { data } = $props();
@@ -21,7 +23,13 @@
     // Replace the first currency symbol occurrence
     return usd.replace(/^\$/, '') +  " 🪙";
   }
+  onMount(() => {
+    if(user.tutorialPhase === 1){
+      user.tutorialPhase = 2;
+    }
+  })
   console.log(market.endDate)
+  let main = $state();
 </script>
 <Nav/>
 <svelte:head>
@@ -40,21 +48,28 @@
         {:else}
             <p id="small">{formatCoinUSD(market.volume * 100)} Vol. · Overdue on prediction judgment </p>
         {/if}
-        <PriceHistory {yesPrice} priceHistory={data.priceHistory}/>
+        <PriceHistory {yesPrice} priceHistory={data.priceHistory} />
         <div style="margin-top: 16px;">
           <h1>Rules</h1>
           <pre>{market.description}</pre>
         </div>
       </div>
-      <div>
+      <div id="round" bind:this={main}>
         <TransactionWidget {market} {yesPrice} {noPrice}/>
       </div>
     </div>
 
   </section>
 </main>
-
+{#if market.slug === "monomarket-tutorial" && [2, 3].includes(user.tutorialPhase)}
+  <PopOver highlighted={main} />
+{/if}
 <style>
+
+    #round{
+        border-radius: 10px;
+        height: min-content;
+    }
     pre{
         max-width: 1000px;
         text-wrap: auto;

@@ -4,7 +4,7 @@
   import Nav from "./Nav.svelte";
   import {Bitcoin, CircleDollarSign, Earth, GalleryVerticalEnd, Landmark, Monitor, Scale, Users} from 'lucide-svelte';
   import First from "$lib/tutorial/First.svelte";
-  import {tutorialMarket} from "$lib/index.svelte.js";
+  import {tutorialMarket, user} from "$lib/index.svelte.js";
   let markets = $state([]);
   let page = 1;
   let loading = false;
@@ -30,10 +30,11 @@
     }
     const data = await res.json();
     markets = [...markets, ...data];
-    if(localStorage.getItem("tutorialPhase") == null && page === 1){
-      isTutorial = true;
+    if([0, 1].includes(user.tutorialPhase) && page === 1){
       markets = [tutorialMarket, ...markets];
-
+      if(user.tutorialPhase === 0){
+        isTutorial = true;
+      }
     }
     page++;
     loading = false;

@@ -4,22 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca018920-cb8c-4c9b-9b6e-547d617d3822" name="Changes" comment="refactor: adjust layout and improve topic handling in page component">
-      <change afterPath="$PROJECT_DIR$/src/lib/tutorial/First.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/tutorial/PopOver.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/example.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/monomarketmockup.png" afterDir="false" />
+    <list default="true" id="ca018920-cb8c-4c9b-9b6e-547d617d3822" name="Changes" comment="feat: add tutorial market and enhance tutorial experience">
+      <change afterPath="$PROJECT_DIR$/src/lib/tutorial/Last.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lock" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/MarketOverview.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/MarketOverview.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib/index.svelte.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/index.svelte.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/tutorial/First.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/tutorial/First.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/tutorial/PopOver.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/tutorial/PopOver.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/+page.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/Nav.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/Nav.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/api/eventData/[slug]/+server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/api/eventData/[slug]/+server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/+page.server.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/+page.server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/PriceHistory.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/PriceHistory.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/event/[slug]/TransactionWidget.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/event/[slug]/TransactionWidget.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/predictions/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/predictions/+page.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/predictions/Prediction.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/predictions/Prediction.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +40,7 @@
         <option value="+page.svelt" />
         <option value="first.svelte" />
         <option value="PopOver.svelte" />
+        <option value="Last.svelte" />
       </list>
     </option>
   </component>
@@ -136,7 +136,7 @@
       <workItem from="1766450249885" duration="49000" />
       <workItem from="1766497900905" duration="35639000" />
       <workItem from="1766755240040" duration="2214000" />
-      <workItem from="1766765363887" duration="13497000" />
+      <workItem from="1766765363887" duration="22387000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <option name="closed" value="true" />
@@ -218,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766587657222</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="feat: add tutorial market and enhance tutorial experience">
+      <option name="closed" value="true" />
+      <created>1766848478470</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1766848478470</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,7 +253,8 @@
     <MESSAGE value="V3" />
     <MESSAGE value="V4" />
     <MESSAGE value="refactor: adjust layout and improve topic handling in page component" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: adjust layout and improve topic handling in page component" />
+    <MESSAGE value="feat: add tutorial market and enhance tutorial experience" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add tutorial market and enhance tutorial experience" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

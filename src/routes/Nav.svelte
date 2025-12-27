@@ -2,6 +2,7 @@
   import { user, formatCoins, saveStocks} from "$lib/index.svelte.js";
   import {onMount} from "svelte";
   import {Toaster} from "svelte-french-toast";
+  import PopOver from "$lib/tutorial/PopOver.svelte";
   let searchTerm = $state("");
   let loc = $state();
   let inputField = $state();
@@ -10,6 +11,10 @@
       user.stocks = [];
       saveStocks();
     }
+    if(localStorage.getItem("tutorialPhase") == null){
+      localStorage.setItem("tutorialPhase", 0);
+    }
+    user.tutorialPhase = parseInt(localStorage.getItem("tutorialPhase"));
     user.stocks = JSON.parse(localStorage.getItem("stocks"));
     if(localStorage.getItem("balance") == null){
       user.balance = 80;
@@ -28,14 +33,18 @@
       window.location.href = "/search/" + searchTerm;
     }
   }
+  let main = $state();
 </script>
 <Toaster />
+{#if [4].includes(user.tutorialPhase)}
+  <PopOver highlighted={main} />
+{/if}
 <nav>
   <main>
     <div id="links">
       <img id="logo" src="/logo.png" alt="Monomarket" onclick={location.href="/"}/>
       <a href="/" class={loc === "/" ? "active" : ""}>Explore</a>
-      <a href="/predictions" class={loc === "/predictions" ? "active" : ""}>My Predictions</a>
+      <a bind:this={main} href="/predictions" class={loc === "/predictions" ? "active" : ""}>My Predictions</a>
       <div id="inputContainer">
         <div id="iconContainer">
           <svg height="18" width="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" class=""><title>magnifier</title><g fill="currentColor"><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" x1="15.25" x2="11.285" y1="15.25" y2="11.285"></line><circle cx="7.75" cy="7.75" fill="none" r="5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></circle></g></svg>

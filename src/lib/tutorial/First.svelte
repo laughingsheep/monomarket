@@ -1,5 +1,6 @@
 <script>
   let hide = $state(false);
+  import {user, updateTutorialPhase} from "$lib/index.svelte.js";
 </script>
 <main class={hide ? 'hidden' : ''}>
   <section>
@@ -14,7 +15,7 @@
 
       Predict correctly and earn coins!
     </p>
-    <button onclick={()=>{hide=true}}>Bet on a question</button>
+    <button onclick={()=>{hide=true;user.tutorialPhase=1;updateTutorialPhase()}}>Bet on a question</button>
   </section>
 </main>
 <style>
