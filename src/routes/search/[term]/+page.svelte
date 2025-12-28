@@ -5,7 +5,7 @@
   let { data } = $props();
   let markets = $state([]);
   let page = 1;
-  let loading = false;
+  let loading = $state(false);
 
   let sentinel;
   let searchTerm = $state("");
@@ -56,7 +56,7 @@
   </section>
 
   {#if loading}
-    <p class="loading">Loading more…</p>
+    <p class="loading">Loading…</p>
   {/if}
 
   <div bind:this={sentinel}></div>

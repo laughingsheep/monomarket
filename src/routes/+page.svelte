@@ -7,11 +7,10 @@
   import {tutorialMarket, user} from "$lib/index.svelte.js";
   let markets = $state([]);
   let page = 1;
-  let loading = false;
+  let loading = $state(false);
   let sentinel;
   let seenIds = new Set();
   async function loadMarkets(topicName) {
-    if (loading) return;
     loading = true;
     let topics = {
       All: 0,
@@ -64,7 +63,6 @@
       page = 1;
       markets = [];
       seenIds = new Set();
-      loading = false;
       loadMarkets(topic);
     })
     const observer = new IntersectionObserver(
@@ -107,7 +105,7 @@
   </section>
 
   {#if loading}
-    <p class="loading">Loading more…</p>
+    <p class="loading">Loading…</p>
   {/if}
   <div bind:this={sentinel}></div>
 </main>

@@ -64,7 +64,6 @@
         overflow: hidden;             /* hide overflow */
     }
     main{
-        cursor: pointer;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -102,6 +101,7 @@
         justify-content: space-between;
     }
     #top{
+        cursor: pointer;
         display: flex;
         gap: 16px;
     }
