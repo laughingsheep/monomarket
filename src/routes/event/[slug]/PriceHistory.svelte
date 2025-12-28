@@ -85,7 +85,7 @@
   <h2 style="--color: {colorForValue(displayPrice)}">{displayPrice}% chance</h2>
 </div>
 
-<canvas width="1000" height="300" bind:this={chartElement} onmouseout={()=>{displayPrice=yesPrice}}>
+<canvas width="900" height="300" bind:this={chartElement} onmouseout={()=>{displayPrice=yesPrice}}>
 
 </canvas>
 <style>
