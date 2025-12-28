@@ -7,7 +7,9 @@
 		<Smartphone size={64} strokeWidth={1.5} />
 		<h1>Your screen is too small :/</h1>
 		<p>Monomarket only works on devices with larger screens, sorry!</p>
-		<p class="hint">If you're on a tablet, try rotating the device.</p>
+    <p>I would implement mobile support, but it doesn't make sense for the project as you need to view detailed graphs.</p>
+    <p>If you're a Hackclub voter, PLEASE come back on a device with more width before voting.</p>
+		<p><b>If you're on a tablet, try rotating the device.</b></p>
 	</div>
 </div>
 
