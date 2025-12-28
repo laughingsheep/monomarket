@@ -11,12 +11,13 @@
 
   import PopOver from "$lib/tutorial/PopOver.svelte";
   let main = $state();
+  import { serveSmaller } from "$lib/index.svelte.js";
 </script>
 
 
 <main bind:this={main}>
   <div id="top" onclick={location.href = '/event/' + market.slug}>
-    <img src={market["icon"] || "/noImage.png"} alt="Market icon" />
+    <img src={serveSmaller(market["icon"])} alt="Market icon" />
     <h1>{market["question"]}</h1>
     <div style="--color: {chanceColor}">
       <h2>{yesPrice}%</h2>

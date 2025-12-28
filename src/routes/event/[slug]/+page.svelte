@@ -2,7 +2,7 @@
   import Nav from "../../Nav.svelte";
   import TransactionWidget from "./TransactionWidget.svelte";
   import PriceHistory from "./PriceHistory.svelte";
-  import {calculateSharePrice, updateTutorialPhase, user} from '$lib/index.svelte.js';
+  import {calculateSharePrice, serveSmaller, updateTutorialPhase, user} from '$lib/index.svelte.js';
   import PopOver from "$lib/tutorial/PopOver.svelte";
   import {onMount} from "svelte";
 
@@ -47,7 +47,7 @@
     <div class="split">
       <div>
         <div id="info">
-          <img src={market["icon"]  || "/noImage.png" } alt="Market icon" />
+          <img src={serveSmaller(market["icon"])} alt="Market icon" />
           <h1>{market["question"]}</h1>
         </div>
         {#if market.endDate}

@@ -73,6 +73,12 @@ export function addStock(slug, yesNo, amount, totalCost) {
 export function updateTutorialPhase(){
   localStorage.setItem("tutorialPhase", user.tutorialPhase);
 }
+export function serveSmaller(url){
+  if(url === null || url === undefined || url === ""){
+    return "/noImage.png"
+  }
+  return `https://polymarket.com/_next/image?url=${encodeURIComponent(url)}&w=96&q=100`
+}
 export const user = $state({
   balance: null,
   stocks: [],

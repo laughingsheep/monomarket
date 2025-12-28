@@ -3,7 +3,15 @@
 
   let { stock } = $props();
 
-  import {calculateSharePrice, colorForValue, formatCoins, removeAllStock, updateTutorialPhase, user} from "$lib/index.svelte.js";
+  import {
+    calculateSharePrice,
+    colorForValue,
+    formatCoins,
+    removeAllStock,
+    serveSmaller,
+    updateTutorialPhase,
+    user
+  } from "$lib/index.svelte.js";
   import Last from "$lib/tutorial/Last.svelte";
   const longDate = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: '2-digit' });
   let yesPrice = $state();
@@ -51,7 +59,7 @@
   <main bind:this={main}>
     <div id="top" onclick={redirect}>
       <div style="display: flex; flex-direction:column;">
-        <img src={market["icon"]  || "/noImage.png" } alt="Market icon" />
+        <img src={serveSmaller(market["icon"])} alt="Market icon" />
       </div>
       <h1>
         {#if market.closed}
