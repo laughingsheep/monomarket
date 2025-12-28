@@ -5,6 +5,7 @@
   import PopOver from "$lib/tutorial/PopOver.svelte";
   import {Tween} from "svelte/motion";
   import {cubicOut} from "svelte/easing";
+  import {Search} from "lucide-svelte";
   let searchTerm = $state("");
   let loc = $state();
   let inputField = $state();
@@ -41,7 +42,7 @@
   });
 
   function search(e){
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && user.tutorialPhase === 8) {
       e.preventDefault();
       window.location.href = "/search/" + searchTerm;
     }
@@ -60,7 +61,7 @@
       <a bind:this={main} href="/predictions" class={loc === "/predictions" ? "active" : ""}>My Predictions</a>
       <div id="inputContainer">
         <div id="iconContainer">
-          <svg height="18" width="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" class=""><title>magnifier</title><g fill="currentColor"><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" x1="15.25" x2="11.285" y1="15.25" y2="11.285"></line><circle cx="7.75" cy="7.75" fill="none" r="5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></circle></g></svg>
+          <Search size={18} color="#77808d"/>
         </div>
         <input bind:this={inputField} type="text" id="search" placeholder="Search markets..." onkeydown={search} bind:value={searchTerm}/>
       </div>
@@ -73,10 +74,6 @@
 </nav>
 
 <style>
-    svg{
-        display: block;
-        color: #77808d;
-    }
     #iconContainer{
         position: absolute;
         top: 30%;

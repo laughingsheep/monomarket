@@ -8,7 +8,7 @@ Monomarket is a fully functioning just-for-fun prediction platform where you bet
 
 Predict correctly and earn coins!
 
-The website is build entirely using SvelteKit. Question data comes from the Polymarket API.
+The website is build entirely using SvelteKit. Question data comes from the Polymarket API. All icons are from https://lucide.dev/.
 ## Features:
 - Completely interactive tutorial
 - Browse through different categories like Politics, Tech, or Culture
