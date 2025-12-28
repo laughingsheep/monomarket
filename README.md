@@ -1,38 +1,26 @@
-# sv
+# Monomarket
+## Can you predict the future?
+Monomarket is a fully functioning just-for-fun prediction platform where you bet on future events like:
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+- Will Zoomania 2 be the highest-grossing movie?
+- Will ChatGPT be the most downloaded app this year?
+- Will the USA experience a recession next year?
 
-## Creating a project
+Predict correctly and earn coins!
 
-If you're seeing this, you've probably already done this step. Congrats!
+The website is build entirely using SvelteKit. Question data comes from the Polymarket API.
+## Features:
+- Completely interactive tutorial
+- Browse through different categories like Politics, Tech, or Culture
+- Search for any question
+- View the price development and rules for a question
+- Buy and sell shares at any time
+- View your profit/loss in the "My Predictions" tab
+- Become the best player?
 
+## Running your own Monomarket instance
+In your terminal, run:
 ```sh
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+npm i && npm run dev
 ```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+The webserver will listen on http://localhost:5173/
