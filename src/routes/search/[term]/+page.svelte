@@ -76,10 +76,26 @@
         flex-wrap: wrap;
         gap: 20px;
         justify-content: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+        width: 100%;
     }
 
     .loading {
         padding: 20px;
         opacity: 0.6;
+    }
+
+    /* Mobile breakpoint */
+    @media (max-width: 600px) {
+        section {
+            padding: 0 12px;
+            gap: 12px;
+        }
+        h2 {
+            font-size: 18px;
+            padding: 0 12px;
+            text-align: center;
+        }
     }
 </style>

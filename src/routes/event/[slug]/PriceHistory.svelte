@@ -98,12 +98,22 @@
         z-index: 2;
     }
     canvas{
-        width: 900px;
+        width: 100%;
+        max-width: 900px;
         height: 300px;
     }
     h2{
         margin: 20px 0;
         font-size: 30px;
         color: var(--color);
+    }
+
+    @media (max-width: 600px) {
+        canvas {
+            height: 200px;
+        }
+        h2 {
+            font-size: 24px;
+        }
     }
 </style>

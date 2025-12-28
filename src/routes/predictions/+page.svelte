@@ -60,4 +60,20 @@ onMount(()=>{
         flex-grow: 1;
         min-width: 300px;
     }
+
+    /* Mobile breakpoint */
+    @media (max-width: 600px) {
+        section {
+            padding: 0 12px;
+        }
+        .stocks {
+            gap: 12px;
+        }
+        .stocks > :global(*) {
+            min-width: 100%;
+        }
+        h1 {
+            font-size: 22px;
+        }
+    }
 </style>

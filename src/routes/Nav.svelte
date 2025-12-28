@@ -142,5 +142,38 @@
       align-items: center;
       justify-content: space-between;
       width: 1360px;
+      max-width: 100%;
+  }
+
+  /* Tablet breakpoint */
+  @media (max-width: 900px) {
+      input {
+          width: 200px;
+      }
+  }
+
+  /* Mobile breakpoint */
+  @media (max-width: 600px) {
+      #inputContainer {
+          display: none;
+      }
+      #links {
+          gap: 12px;
+      }
+      a {
+          font-size: 14px;
+      }
+      img {
+          height: 40px;
+      }
+      b {
+          font-size: 16px;
+      }
+      nav {
+          padding-left: 12px;
+          padding-right: 12px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+      }
   }
 </style>

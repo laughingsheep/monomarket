@@ -111,5 +111,18 @@
         object-position: center;
         display: block;
         border-radius: 8px;
+        flex-shrink: 0;
+    }
+
+    /* Mobile breakpoint */
+    @media (max-width: 600px) {
+        main {
+            width: 100%;
+            height: auto;
+            min-height: 120px;
+        }
+        #bottom button {
+            width: 48%;
+        }
     }
 </style>

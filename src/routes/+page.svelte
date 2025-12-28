@@ -163,4 +163,33 @@
         padding: 20px;
         opacity: 0.6;
     }
+
+    /* Tablet breakpoint */
+    @media (max-width: 900px) {
+        #topics {
+            gap: 20px;
+        }
+        #topics p {
+            font-size: 16px;
+        }
+    }
+
+    /* Mobile breakpoint */
+    @media (max-width: 600px) {
+        #topics {
+            gap: 15px;
+            padding: 10px 12px;
+        }
+        #topics p {
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        section {
+            padding: 0 12px;
+            gap: 12px;
+        }
+        section > :global(*) {
+            min-width: 100%;
+        }
+    }
 </style>

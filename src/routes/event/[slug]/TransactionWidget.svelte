@@ -123,6 +123,7 @@
   }
   #yesNoMenu{
       display: flex;
+      gap: 5px;
       justify-content: space-between;
   }
   .yesActivated{
@@ -157,7 +158,7 @@
   }
   .yesNo{
       height: 50px;
-      width: 150px;
+      width: 100%;
       display: flex;
       border-radius: 10px;
       cursor: pointer;
@@ -244,6 +245,49 @@
       gap: 10px;
       justify-content: flex-end;
       margin-top: 10px;
+  }
+
+  /* Tablet breakpoint */
+  @media (max-width: 1270px) {
+      main {
+          width: 70%;
+          display: block;
+          margin: 0 auto;
+      }
+  }
+
+  /* Mobile breakpoint */
+  @media (max-width: 600px) {
+      main {
+          width: 100%;
+      }
+      .yesNo {
+          width: 48%;
+          height: 45px;
+      }
+      input {
+          width: 100%;
+          font-size: 32px;
+      }
+      #shareInput {
+          flex-wrap: wrap;
+      }
+      button {
+          font-size: 14px;
+          height: 45px;
+      }
+      .stat {
+          font-size: 14px;
+          flex-wrap: wrap;
+          gap: 5px;
+      }
+      #explanation {
+          font-size: 12px;
+      }
+      .quickadd {
+          padding: 4px 8px;
+          font-size: 14px;
+      }
   }
 </style>
 <main>

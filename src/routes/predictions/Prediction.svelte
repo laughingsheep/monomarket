@@ -279,5 +279,35 @@
         object-position: center;
         display: block;
         border-radius: 8px;
+        flex-shrink: 0;
+    }
+
+    /* Mobile breakpoint */
+    @media (max-width: 600px) {
+        main {
+            width: 100%;
+            height: auto;
+            min-height: 210px;
+        }
+        #bottom {
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .stat {
+            min-width: 45%;
+        }
+        #actions {
+            flex-direction: column;
+            gap: 10px;
+        }
+        #actions button {
+            width: 100%;
+        }
+        h4 {
+            font-size: 16px;
+        }
+        h5 {
+            font-size: 12px;
+        }
     }
 </style>
