@@ -80,6 +80,11 @@
     mode = urlParams.get('mode') === "SELL" ? "SELL" : "BUY";
     yesNo = urlParams.get('yesNo') === "NO" ? "NO" : "YES";
   })
+  function error(msg){
+    toast.error(msg,{
+      position: "bottom-right"
+    } );
+  }
 </script>
 
 <style>
@@ -244,17 +249,17 @@
 <main>
   <div id="modeSelector">
     <p class={mode === "BUY" ? "activated" : ""} onclick={()=>{mode="BUY"}}>Buy</p>
-    <p class='{mode === "SELL" ? "activated" : ""} {stockOwnedTotal === 0 ? "noSell" : ""}' title={stockOwnedTotal === 0 ? "You own no shares to sell" : ""} onclick={()=>{if(stockOwnedTotal>0)mode="SELL"}}>Sell</p>
+    <p class='{mode === "SELL" ? "activated" : ""} {stockOwnedTotal === 0 ? "noSell" : ""}' title={stockOwnedTotal === 0 ? "You own no shares to sell" : ""} onclick={()=>{if(stockOwnedTotal>0){mode="SELL"}else{error("You own no shares you could sell")}}}>Sell</p>
   </div>
   <hr>
   <section id="buyMenu">
     {#if mode === "BUY"}
       <div id="yesNoMenu">
-        <div id="yes" class='yesNo {yesNo === "NO" ? "deactivated" : "yesActivated"} {stockOwnedNo !== 0 ? "disallowed" : ""} ' title={stockOwnedNo !== 0 ? "Sell your No shares first" : ""} onclick={()=>{if(stockOwnedNo === 0) yesNo="YES"}}>
+        <div id="yes" class='yesNo {yesNo === "NO" ? "deactivated" : "yesActivated"} {stockOwnedNo !== 0 ? "disallowed" : ""} ' title={stockOwnedNo !== 0 ? "Sell your No shares first" : ""} onclick={()=>{if(stockOwnedNo === 0){yesNo="YES"}else{error("You need to sell your 'Yes' shares first as you can't hold both yes and no shares at the same time")}}}>
           <p class="name">Yes</p>
           <p class="price">{yesPrice} 🪙</p>
         </div>
-        <div id="no" class='yesNo {yesNo === "YES" ? "deactivated" : "noActivated"}  {stockOwnedYes !== 0 ? "disallowed" : ""}' title={stockOwnedYes !== 0 ? "Sell your Yes shares first" : ""} onclick={()=>{if(stockOwnedYes === 0) yesNo="NO"}}>
+        <div id="no" class='yesNo {yesNo === "YES" ? "deactivated" : "noActivated"}  {stockOwnedYes !== 0 ? "disallowed" : ""}' title={stockOwnedYes !== 0 ? "Sell your Yes shares first" : ""} onclick={()=>{if(stockOwnedYes === 0){yesNo="NO"}else{error("You need to sell your 'Yes' shares first as you can't hold both yes and no shares at the same time")}}}>
           <p class="name">No</p>
           <p class="price">{noPrice} 🪙</p>
         </div>
@@ -298,7 +303,7 @@
           Buy {amount} {lowercaseAllExceptFirst(yesNo)} share(s) for {yesNo === "YES" ? formatCoinUSD(yesPrice * amount) : formatCoinUSD(noPrice * amount)}
         </button>
       {:else}
-        <button style="background: gray; cursor: not-allowed;">
+        <button style="background: gray; cursor: not-allowed;" onclick={()=>{error("Insufficient balance to complete purchase")}}>
           You need {formatCoinUSD((yesNo === "YES" ? yesPrice * amount : noPrice * amount) - user.balance)} more
         </button>
       {/if}
@@ -329,7 +334,7 @@
           Sell {amount} {lowercaseAllExceptFirst(yesNo)} share(s) for {yesNo === "YES" ? formatCoinUSD(yesPrice * amount) : formatCoinUSD(noPrice * amount)}
         </button>
       {:else if stockOwned > 0}
-        <button style="background: gray; cursor: not-allowed;">
+        <button style="background: gray; cursor: not-allowed;" onclick={()=>{error("You can't sell more shares than you own")}}>
           You only have {stockOwned} {lowercaseAllExceptFirst(yesNo)} share(s)
         </button>
       {:else}
