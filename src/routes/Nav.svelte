@@ -6,6 +6,7 @@
   import {Tween} from "svelte/motion";
   import {cubicOut} from "svelte/easing";
   import {Search} from "lucide-svelte";
+  import Blocker from "./Blocker.svelte";
   let searchTerm = $state("");
   let loc = $state();
   let inputField = $state();
@@ -53,6 +54,7 @@
 {#if [4].includes(user.tutorialPhase)}
   <PopOver highlighted={main} />
 {/if}
+<Blocker/>
 <nav>
   <main>
     <div id="links">
