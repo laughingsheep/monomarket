@@ -47,7 +47,7 @@
     <div class="split">
       <div>
         <div id="info">
-          <img src={serveSmaller(market["icon"])} alt="Market icon" />
+          <img src={serveSmaller(market["icon"])} alt="Market icon"  onerror={(e)=>{e.currentTarget.src='/noImage.png'}}/>
           <h1>{market["question"]}</h1>
         </div>
         {#if market.endDate}

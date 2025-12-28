@@ -59,7 +59,7 @@
   <main bind:this={main}>
     <div id="top" onclick={redirect}>
       <div style="display: flex; flex-direction:column;">
-        <img src={serveSmaller(market["icon"])} alt="Market icon" />
+        <img src={serveSmaller(market["icon"])} alt="Market icon" onerror={(e)=>{e.currentTarget.src='/noImage.png'}}/>
       </div>
       <h1>
         {#if market.closed}

@@ -63,6 +63,8 @@
     $effect(()=>{
       page = 1;
       markets = [];
+      seenIds = new Set();
+      loading = false;
       loadMarkets(topic);
     })
     const observer = new IntersectionObserver(

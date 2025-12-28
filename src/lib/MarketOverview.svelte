@@ -17,7 +17,7 @@
 
 <main bind:this={main}>
   <div id="top" onclick={location.href = '/event/' + market.slug}>
-    <img src={serveSmaller(market["icon"])} alt="Market icon" />
+    <img src={serveSmaller(market["icon"])} alt="Market icon" onerror={(e)=>{e.currentTarget.src='/noImage.png'}}/>
     <h1>{market["question"]}</h1>
     <div style="--color: {chanceColor}">
       <h2>{yesPrice}%</h2>
